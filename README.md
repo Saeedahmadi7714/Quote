@@ -46,6 +46,6 @@ $ flask run
 > set FLASK_ENV=development
 > flask run
 ```
-Open http://127.0.0.1:5000 in a browser. 
+Open http://127.0.0.1:5000 in your browser. 
 ## License
 [GNU GPLv3](https://https://choosealicense.com/licenses/gpl-3.0/)
