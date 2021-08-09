@@ -42,10 +42,3 @@ def user_profile(user_id):
 @bp.route('/logout/')
 def logout():
     pass
-
-
-
-
-
-
-

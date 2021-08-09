@@ -4,17 +4,12 @@ from .database import get_db
 bp = Blueprint("blog", __name__)
 
 
-# For testing that project is correctly running
+@bp.route("/home/")
 @bp.route("/")
-def index():
+def home():
     db = get_db()
     print(db)
     return render_template('/blog/index.html')
-
-
-@bp.route("/home/")
-def home():
-    pass
 
 
 @bp.route('/post/<post_id>')
