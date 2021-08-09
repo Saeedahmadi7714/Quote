@@ -42,7 +42,7 @@ $ flask run
 ```
 ##### Or on Windows cmd : 
 ```bash
-> set FLASK_APP=app.py
+> set FLASK_APP=quote
 > set FLASK_ENV=development
 > flask run
 ```
