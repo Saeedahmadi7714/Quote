@@ -8,7 +8,11 @@ bp = Blueprint("blog", __name__)
 @bp.route("/")
 def home():
     db = get_db()
-    print(db)
+    # test_post = {
+    #     
+    # }
+    # db.user.insert(doc1)
+    # print(db.collection_names())
     return render_template('/blog/index.html')
 
 
