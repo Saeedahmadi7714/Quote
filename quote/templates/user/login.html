@@ -1,5 +1,5 @@
 {% extends "/user/base.html" %}
-{% block title %} ورود {% endblock %}
+{% block title %} Sign in {% endblock %}
 {% block content %}
 
     <div class="container-fluid">
@@ -8,11 +8,11 @@
                 <form method="POST" enctype="multipart/form-data" action="{{ url_for('blog.login') }}">
 
                     <h3>
-                        ورود به ناحیه کاربری
+                        Sign in
                     </h3>
 
                     <label>
-                        <p class="label-txt">ایمیل</p>
+                        <p class="label-txt">Email address</p>
                         <input type="text" name="email" id="email" class="input">
                         <div class="line-box">
                             <div class="line"></div>
@@ -21,14 +21,14 @@
 
 
                     <label>
-                        <p class="label-txt">رمز عبور</p>
+                        <p class="label-txt">Password</p>
                         <input type="password" name="password" id="password" class="input">
                         <div class="line-box">
                             <div class="line"></div>
                         </div>
                     </label>
 
-                    <button type="submit"> ورود</button>
+                    <button type="submit"> Sing in </button>
 
                 </form>
             </div>
