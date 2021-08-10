@@ -1,10 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "/user/base.html" %}
+{% block title %} ثبت نام {% endblock %}
+{% block content %}
 
-</body>
-</html>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <form method="POST" enctype="multipart/form-data" action="{{ url_for('blog.register') }}">
+
+                    <label>
+                        <p class="label-txt">نام</p>
+                        <input type="text" name="name" id="name" class="input">
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                    </label>
+
+                    <label>
+                        <p class="label-txt">نام خانوادگی</p>
+                        <input type="text" name="last_name" id="last_name" class="input">
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                    </label>
+
+                    <label>
+                        <p class="label-txt">رمز عبور</p>
+                        <input type="password" name="password" id="password" class="input">
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                    </label>
+
+
+                    <label>
+                        <p class="label-txt">ایمیل</p>
+                        <input type="text" name="email" id="email" class="input">
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                    </label>
+
+                    <label>
+                        <p class="label-txt">شماره تلفن</p>
+                        <input type="text" name="phone_number" id="phone_number" class="input">
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                    </label>
+
+                    <label>
+                        <p class="label-txt">عکس خود را انتخاب کنید</p>
+                        <input type="file" name="profile_image" id="profile_image" class="input" style="width:30%;">
+                        <div class="line-box">
+                            <div class="line"></div>
+                        </div>
+                    </label>
+
+
+                    <button type="submit">!منو ثبت نام کن</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{{ url_for('static', filename='js/user.js') }}"></script>
+{% endblock %}
