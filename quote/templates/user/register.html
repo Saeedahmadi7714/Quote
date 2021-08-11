@@ -1,5 +1,5 @@
 {% extends "/user/base.html" %}
-{% block title %} ثبت نام {% endblock %}
+{% block title %} Sign Up {% endblock %}
 {% block content %}
 
     <div class="container-fluid">
@@ -9,11 +9,11 @@
                 <form method="POST" enctype="multipart/form-data" action="{{ url_for('blog.register') }}">
 
                     <h3>
-                        ثبت نام
+                        Sign up
                     </h3>
 
                     <label>
-                        <p class="label-txt">نام</p>
+                        <p class="label-txt"> First name </p>
                         <input type="text" name="name" id="name" class="input">
                         <div class="line-box">
                             <div class="line"></div>
@@ -21,7 +21,7 @@
                     </label>
 
                     <label>
-                        <p class="label-txt">نام خانوادگی</p>
+                        <p class="label-txt">Last name</p>
                         <input type="text" name="last_name" id="last_name" class="input">
                         <div class="line-box">
                             <div class="line"></div>
@@ -29,7 +29,7 @@
                     </label>
 
                     <label>
-                        <p class="label-txt">رمز عبور</p>
+                        <p class="label-txt">Password</p>
                         <input type="password" name="password" id="password" class="input">
                         <div class="line-box">
                             <div class="line"></div>
@@ -38,7 +38,7 @@
 
 
                     <label>
-                        <p class="label-txt">ایمیل</p>
+                        <p class="label-txt">Email</p>
                         <input type="text" name="email" id="email" class="input">
                         <div class="line-box">
                             <div class="line"></div>
@@ -46,7 +46,7 @@
                     </label>
 
                     <label>
-                        <p class="label-txt">شماره تلفن</p>
+                        <p class="label-txt">Phone number</p>
                         <input type="text" name="phone_number" id="phone_number" class="input">
                         <div class="line-box">
                             <div class="line"></div>
@@ -54,7 +54,7 @@
                     </label>
 
                     <label>
-                        <p class="label-txt">عکس خود را انتخاب کنید</p>
+                        <p class="label-txt">Choose profile image</p>
                         <input type="file" name="profile_image" id="profile_image" class="input" style="width:30%;">
                         <div class="line-box">
                             <div class="line"></div>
@@ -62,7 +62,7 @@
                     </label>
 
 
-                    <button type="submit"> ثبت نام </button>
+                    <button type="submit"> Sign up</button>
 
                 </form>
             </div>
