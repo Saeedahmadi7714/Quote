@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash,
 from .models import User
 from .database import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
+from mongoengine import FieldDoesNotExist
 
 bp = Blueprint("blog", __name__)
 
@@ -37,7 +39,13 @@ def register():
         password = request.form.get("password")
         email = request.form.get("email")
         phone_number = request.form.get("phone_number")
-        profile_image = request.form.get("profile_image")
+        file = request.files.get('profile_image')
+        if file:
+            file_name = secure_filename(file.filename)
+            file.save('quote/static/images/' + file_name)
+            image = file_name
+        else:
+            image = None
 
         db = get_db()
 
@@ -45,15 +53,15 @@ def register():
         username_exists = User.objects(user_name=user_name).first()
 
         if email_exists:
-            print('Email is already in use.', 'error')
+            flash('Email is already in use.', 'error')
         elif username_exists:
-            print('Username is already in use.', 'error')
+            flash('Username is already in use.', 'error')
         elif len(user_name) < 2:
-            print('Username is too short.', 'error')
+            flash('Username is too short.', 'error')
         elif len(password) < 6:
-            print('Password is too short.', 'error')
+            flash('Password is too short.', 'error')
         elif len(email) < 6:
-            print("Email is invalid.", 'error')
+            flash("Email is invalid.", 'error')
         else:
             new_user = User(
                 user_name=user_name,
@@ -62,12 +70,12 @@ def register():
                 password=generate_password_hash(password, method='sha256'),
                 phone_number=phone_number,
                 email=email,
-                image="img"  # must be fixed!
+                image=image  
             )
 
             new_user.save()
 
-            print('User created!')
+            flash('User created!')
             return redirect(url_for('blog.home'))
 
     return render_template("user/register.html")
@@ -86,7 +94,7 @@ def login():
                 # session['first_name'] = user['first_name']
                 # session['user_name'] = user['user_name']
                 # session["user_id"] = str(user["_id"])
-                print("Logged in!", 'success')
+                flash("Logged in!", 'success')
 
                 return redirect(url_for('blog.home'))
             else:
