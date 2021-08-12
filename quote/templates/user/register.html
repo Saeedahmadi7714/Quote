@@ -1,18 +1,16 @@
-{% extends "/user/base.html" %}
-{% block title %} Sign Up {% endblock %}
-{% block content %}
+{% extends "/user/base.html" %} {% block title %} Sign Up {% endblock %} {% block content %}
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
 
-                <form method="POST" enctype="multipart/form-data" action="{{ url_for('blog.register') }}">
+            <form method="POST" enctype="multipart/form-data" action="{{ url_for('blog.register') }}">
 
-                    <h3>
-                        Sign up
-                    </h3>
+                <h3>
+                    Sign up
+                </h3>
 
-                    <label>
+                <label>
                         <p class="label-txt"> Username </p>
                         <input type="text" name="user_name" id="user_name" class="input">
                         <div class="line-box">
@@ -20,7 +18,7 @@
                         </div>
                     </label>
 
-                    <label>
+                <label>
                         <p class="label-txt"> First name </p>
                         <input type="text" name="first_name" id="first_name" class="input">
                         <div class="line-box">
@@ -28,7 +26,7 @@
                         </div>
                     </label>
 
-                    <label>
+                <label>
                         <p class="label-txt">Last name</p>
                         <input type="text" name="last_name" id="last_name" class="input">
                         <div class="line-box">
@@ -36,7 +34,7 @@
                         </div>
                     </label>
 
-                    <label>
+                <label>
                         <p class="label-txt">Password</p>
                         <input type="password" name="password" id="password" class="input">
                         <div class="line-box">
@@ -45,7 +43,7 @@
                     </label>
 
 
-                    <label>
+                <label>
                         <p class="label-txt">Email</p>
                         <input type="text" name="email" id="email" class="input">
                         <div class="line-box">
@@ -53,7 +51,7 @@
                         </div>
                     </label>
 
-                    <label>
+                <label>
                         <p class="label-txt">Phone number</p>
                         <input type="text" name="phone_number" id="phone_number" class="input">
                         <div class="line-box">
@@ -61,7 +59,7 @@
                         </div>
                     </label>
 
-                    <label>
+                <label>
                         <p class="label-txt">Choose profile image</p>
                         <input type="file" name="profile_image" id="profile_image" class="input" style="width:110px;">
                         <div class="line-box">
@@ -70,14 +68,13 @@
                     </label>
 
 
-                    <button type="submit"> Sign up</button>
+                <button type="submit"> Sign up</button>
 
-                </form>
-            </div>
+            </form>
         </div>
     </div>
+</div>
 
-{% endblock %}
-{% block js %}
-    <script src="{{ url_for('static', filename='js/user.js') }}"></script>
+{% endblock %} {% block js %}
+<script src="{{ url_for('static', filename='js/user.js') }}"></script>
 {% endblock %}

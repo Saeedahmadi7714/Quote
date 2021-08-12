@@ -8,6 +8,7 @@ bp = Blueprint("blog", __name__)
 
 # SECRET_KEY = 'many random bytes'
 
+
 @bp.route("/home/")
 @bp.route("/")
 def home():
@@ -90,7 +91,6 @@ def login():
                 # session['user_name'] = user['user_name']
                 # session["user_id"] = str(user["_id"])
                 print("Logged in!", 'success')
-
                 return redirect(url_for('blog.home'))
             else:
                 print('Password is incorrect.', 'error')
@@ -103,3 +103,4 @@ def login():
 @bp.route('/login', methods=['GET', 'POST'])
 def logout():
     pass
+    return render_template("user/login.html")
