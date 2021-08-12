@@ -1,6 +1,6 @@
 body {
   /*background: #C5E1A5;*/
-  /*background: #93c476;*/
+  background: #93c476;
   /*background: #93c476;*/
 }
 form {
@@ -77,4 +77,9 @@ button {
 button:hover {
   background: #8BC34A;
   color: #ffffff;
+}
+
+#alert_msg{
+  display: flex;
+  justify-content: center;
 }

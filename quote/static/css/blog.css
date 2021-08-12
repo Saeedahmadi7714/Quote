@@ -1,29 +1,37 @@
 body {
-  /*background-color:;*/
+    /*background: #a1a1a1;*/
     font-family: "Shabnam", serif;
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
 
 @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-   
-a:link { text-decoration: none; }
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
 
-a:visited { text-decoration: none; }
+a:link {
+    text-decoration: none;
+}
 
-a:hover { text-decoration: none; }
+a:visited {
+    text-decoration: none;
+}
 
-a:active { text-decoration: none; }
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
 
 
