@@ -6,9 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 bp = Blueprint("blog", __name__)
 
 
-# SECRET_KEY = 'many random bytes'
-
-
 @bp.route("/home/")
 @bp.route("/")
 def home():
@@ -79,11 +76,10 @@ def register():
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+
         password = request.form.get("password")
         email = request.form.get("email")
-
         db = get_db()
-
         user = User.objects(email=email).first()  # check if user exists by email.
         if user:
             if check_password_hash(user["password"], password):
@@ -91,16 +87,18 @@ def login():
                 # session['user_name'] = user['user_name']
                 # session["user_id"] = str(user["_id"])
                 print("Logged in!", 'success')
+
                 return redirect(url_for('blog.home'))
             else:
-                print('Password is incorrect.', 'error')
+                flash('Password is incorrect.')
+                # print('Password is incorrect.', 'error')
         else:
-            print('Email does not exist.', 'error')
+            flash('Email does not exist.')
+            # print('Email does not exist.', 'error')
 
     return render_template("user/login.html")
 
 
-@bp.route('/login', methods=['GET', 'POST'])
+@bp.route('/logout', methods=['GET', 'POST'])
 def logout():
     pass
-    return render_template("user/login.html")
