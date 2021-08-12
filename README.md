@@ -2,7 +2,7 @@
 
 A simple and basic blog using Flask, MongoDB, and a little bit of JavaScript. You can post content or enjoy reading other people's content.
 
-## Features :
+## Features
 
 * As a normal user : 
     * Read all posts in application
