@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, request
-from .database import get_db
+from flask import Blueprint, render_template, redirect, url_for,request, flash, session
 from .models import User
+from .database import get_db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 bp = Blueprint("blog", __name__)
-
+bp.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 @bp.route("/home/")
 @bp.route("/")
@@ -34,4 +35,20 @@ def register():
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
-    pass
+    if request.method == 'POST':
+        password = request.form.get("password")
+        email = request.form.get("email")
+        
+        db = get_db()
+        
+        user = User.objects(email=email).first()   #check if user exists by email.
+        if user:
+            if check_password_hash(user["password"], password):
+                print("Logged in!",'success')
+                return redirect(url_for('blog.home'))
+            else:
+                print('Password is incorrect.', 'error')
+        else:
+            print('Email does not exist.','error')
+
+    return render_template("user/login.html")
