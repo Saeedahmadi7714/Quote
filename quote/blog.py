@@ -1,11 +1,12 @@
-from flask import Blueprint, render_template, redirect, url_for,request, flash, session
+from flask import Blueprint, render_template, redirect, url_for, request, flash, session
 from .models import User
 from .database import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
 
 bp = Blueprint("blog", __name__)
-bp.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
+
+# SECRET_KEY = 'many random bytes'
 
 @bp.route("/home/")
 @bp.route("/")
@@ -39,35 +40,35 @@ def register():
         email = request.form.get("email")
         phone_number = request.form.get("phone_number")
         profile_image = request.form.get("profile_image")
-        
+
         db = get_db()
-        
+
         email_exists = User.objects(email=email).first()
         username_exists = User.objects(user_name=user_name).first()
 
         if email_exists:
             print('Email is already in use.', 'error')
         elif username_exists:
-            print('Username is already in use.','error')
+            print('Username is already in use.', 'error')
         elif len(user_name) < 2:
             print('Username is too short.', 'error')
         elif len(password) < 6:
             print('Password is too short.', 'error')
         elif len(email) < 6:
-            print("Email is invalid.", 'error')  
+            print("Email is invalid.", 'error')
         else:
             new_user = User(
-            user_name =user_name,
-            first_name=first_name,
-            last_name=last_name,
-            password=generate_password_hash(password, method='sha256'),
-            phone_number=phone_number,
-            email=email,
-            image="img"      #must be fixed!
+                user_name=user_name,
+                first_name=first_name,
+                last_name=last_name,
+                password=generate_password_hash(password, method='sha256'),
+                phone_number=phone_number,
+                email=email,
+                image="img"  # must be fixed!
             )
-            
+
             new_user.save()
-            
+
             print('User created!')
             return redirect(url_for('blog.home'))
 
@@ -79,17 +80,26 @@ def login():
     if request.method == 'POST':
         password = request.form.get("password")
         email = request.form.get("email")
-        
+
         db = get_db()
-        
-        user = User.objects(email=email).first()   #check if user exists by email.
+
+        user = User.objects(email=email).first()  # check if user exists by email.
         if user:
             if check_password_hash(user["password"], password):
-                print("Logged in!",'success')
+                # session['first_name'] = user['first_name']
+                # session['user_name'] = user['user_name']
+                # session["user_id"] = str(user["_id"])
+                print("Logged in!", 'success')
+
                 return redirect(url_for('blog.home'))
             else:
                 print('Password is incorrect.', 'error')
         else:
-            print('Email does not exist.','error')
+            print('Email does not exist.', 'error')
 
     return render_template("user/login.html")
+
+
+@bp.route('/login', methods=['GET', 'POST'])
+def logout():
+    pass
