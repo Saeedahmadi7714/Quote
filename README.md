@@ -8,7 +8,7 @@ A simple and basic blog using Flask, MongoDB, and a little bit of JavaScript. Yo
     * Read all posts in application
     * Search in posts with categories and tags
 
-* As logged in user
+* As logged in user :
     * Create, delete and deactivate your posts
     * Edit your posts (you can't change the image and post's category)
     * Like or dislike posts 
