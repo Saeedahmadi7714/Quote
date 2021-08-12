@@ -33,6 +33,7 @@ def tag(tag_id):
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     try:
+
         if request.method == 'POST':
             user_name = request.form.get("user_name")
             first_name = request.form.get("first_name")
@@ -49,20 +50,19 @@ def register():
                 image = None
 
             db = get_db()
-
             email_exists = User.objects(email=email).first()
             username_exists = User.objects(user_name=user_name).first()
 
             if email_exists:
-                flash('Email is already in use.')
+                flash('Email is already in use.', 'error')
             elif username_exists:
-                flash('Username is already in use.')
+                flash('Username is already in use.', 'error')
             elif len(user_name) < 2:
-                flash('Username is too short.')
+                flash('Username is too short.', 'error')
             elif len(password) < 6:
-                flash('Password is too short.')
+                flash('Password is too short.', 'error')
             elif len(email) < 6:
-                flash("Email is invalid.")
+                flash("Email is invalid.", 'error')
             else:
                 new_user = User(
                     user_name=user_name,
@@ -76,7 +76,6 @@ def register():
 
                 new_user.save()
 
-                flash('User created!')
                 return redirect(url_for('blog.home'))
 
         return render_template("user/register.html")
@@ -94,21 +93,20 @@ def login():
         db = get_db()
         user = User.objects(user_name=user_name).first()
 
-        # check if user exists by username.
+        # Check if user exists with this  username.
         if user:
             if check_password_hash(user["password"], password):
                 # session['first_name'] = user['first_name']
                 # session['user_name'] = user['user_name']
                 # session["user_id"] = str(user["_id"])
                 # session["profile_image"] = user["_id"]
-                flash("Logged in!")
 
                 return redirect(url_for('blog.home'))
             else:
-                flash('Password is incorrect.')
+                flash('Password is incorrect.', 'error')
 
         else:
-            flash('Username does not exist.')
+            flash('Username does not exist.', 'error')
 
     return render_template("user/login.html")
 
