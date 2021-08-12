@@ -76,4 +76,3 @@ def register():
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
-    pass
