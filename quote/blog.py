@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 bp = Blueprint("blog", __name__)
 bp.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
+
 @bp.route("/home/")
 @bp.route("/")
 def home():
@@ -30,7 +31,47 @@ def tag(tag_id):
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
-    pass
+    if request.method == 'POST':
+        user_name = request.form.get("user_name")
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
+        password = request.form.get("password")
+        email = request.form.get("email")
+        phone_number = request.form.get("phone_number")
+        profile_image = request.form.get("profile_image")
+        
+        db = get_db()
+        
+        email_exists = User.objects(email=email).first()
+        username_exists = User.objects(user_name=user_name).first()
+
+        if email_exists:
+            print('Email is already in use.', 'error')
+        elif username_exists:
+            print('Username is already in use.','error')
+        elif len(user_name) < 2:
+            print('Username is too short.', 'error')
+        elif len(password) < 6:
+            print('Password is too short.', 'error')
+        elif len(email) < 6:
+            print("Email is invalid.", 'error')  
+        else:
+            new_user = User(
+            user_name =user_name,
+            first_name=first_name,
+            last_name=last_name,
+            password=generate_password_hash(password, method='sha256'),
+            phone_number=phone_number,
+            email=email,
+            image="img"      #must be fixed!
+            )
+            
+            new_user.save()
+            
+            print('User created!')
+            return redirect(url_for('blog.home'))
+
+    return render_template("user/register.html")
 
 
 @bp.route('/login', methods=['GET', 'POST'])
