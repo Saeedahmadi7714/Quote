@@ -76,4 +76,20 @@ def register():
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
-    pass
+    if request.method == 'POST':
+        password = request.form.get("password")
+        email = request.form.get("email")
+        
+        db = get_db()
+        
+        user = User.objects(email=email).first()   #check if user exists by email.
+        if user:
+            if check_password_hash(user["password"], password):
+                print("Logged in!",'success')
+                return redirect(url_for('blog.home'))
+            else:
+                print('Password is incorrect.', 'error')
+        else:
+            print('Email does not exist.','error')
+
+    return render_template("user/login.html")
