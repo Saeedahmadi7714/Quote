@@ -1,17 +1,23 @@
-{% extends "/user/base.html" %} {% block title %} Sign in {% endblock %} {% block content %} {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
-<p>{{ msg }}</p>
-{% endfor %} {% endif %} {% endwith %}
+{% extends "/user/base.html" %} {% block title %} Sign in {% endblock %} {% block content %}
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <form method="POST" enctype="multipart/form-data" action="{{ url_for('blog.login') }}">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alert alert-danger" role="alert" id="alert_msg">
+                {{ messages[0][1] }}
+            </div>
+        {% endif %}
+    {% endwith %}
 
-                <h3>
-                    Sign in
-                </h3>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <form method="POST" enctype="multipart/form-data" action="{{ url_for('blog.login') }}">
 
-                <label>
+                    <h3>
+                        Sign in
+                    </h3>
+
+                    <label>
                         <p class="label-txt">Username</p>
                         <input type="text" name="user_name" id="user_name" class="input">
                         <div class="line-box">
@@ -20,7 +26,7 @@
                     </label>
 
 
-                <label>
+                    <label>
                         <p class="label-txt">Password</p>
                         <input type="password" name="password" id="password" class="input">
                         <div class="line-box">
@@ -28,17 +34,17 @@
                         </div>
                     </label>
 
-                <button type="submit"> Sing in</button>
-                <div style="margin-top:50px;">
-                    <p> No account? <a href="{{ url_for('blog.register') }}"> Create One </a></p>
-                </div>
+                    <button type="submit"> Sing in</button>
+                    <div style="margin-top:50px;">
+                        <p> No account? <a href="{{ url_for('blog.register') }}"> Create One </a></p>
+                    </div>
 
 
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
 {% endblock %} {% block js %}
-<script src="{{ url_for('static', filename='js/user.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/user.js') }}"></script>
 {% endblock %}
