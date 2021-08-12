@@ -70,7 +70,7 @@ def register():
                 password=generate_password_hash(password, method='sha256'),
                 phone_number=phone_number,
                 email=email,
-                image=image  
+                image=image
             )
 
             new_user.save()
