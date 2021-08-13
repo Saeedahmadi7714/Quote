@@ -1,15 +1,36 @@
 {% extends "/blog/base.html" %}
 
 {% block title %}Quote{% endblock %}
+{% block navbar %}
 
+    <div class="nav-scroller py-1 mb-2 bg-dark">
+        <nav class="nav d-flex justify-content-between">
+            {% for category in categories %}
+                {% for key,value in category.items() %}
+                    {% if key == 'parent' %}
+                        <li class="nav-item dropdown">
+                        <a class="nav-link link-light dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ value }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for each in category['children'] %}
+                            <li><a class="dropdown-item" href="#">{{ each }}</a></li> {% endfor %}
+                    {% endif %}
+                </ul>
+                </li>
+                {% endfor %}
+            {% endfor %}
+        </nav>
+    </div>
+
+{% endblock %}
 {% block TRENDING %}
 {% endblock %}
 
-{% block content %}
-{% endblock %}
+{% block content %}{% endblock %}
 
-{% block sidebar %}
-{% endblock %}
+{% block sidebar %}{% endblock %}
 
 {% block footer %}
 {% endblock %}
