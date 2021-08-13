@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, session
-from .models import User
+from .models import User, Post, Comment, Tag
 from .database import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from mongoengine import FieldDoesNotExist
+from .categories import create_cats
 
 bp = Blueprint("blog", __name__)
 
@@ -12,7 +13,7 @@ bp = Blueprint("blog", __name__)
 @bp.route("/")
 def home():
     db = get_db()
-    return render_template('blog/index.html')
+    return render_template("blog/index.html", categories=create_cats())
 
 
 @bp.route('/post/<post_id>')
@@ -114,3 +115,4 @@ def login():
 @bp.route('/logout', methods=['GET', 'POST'])
 def logout():
     pass
+
