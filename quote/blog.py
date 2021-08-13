@@ -13,7 +13,8 @@ bp = Blueprint("blog", __name__)
 @bp.route("/")
 def home():
     db = get_db()
-    return render_template("blog/index.html", categories=create_cats())
+    user = session
+    return render_template("blog/index.html", categories=create_cats(), user=user)
 
 
 @bp.route('/post/<post_id>')
@@ -97,10 +98,11 @@ def login():
         # Check if user exists with this  username.
         if user:
             if check_password_hash(user["password"], password):
-                # session['first_name'] = user['first_name']
-                # session['user_name'] = user['user_name']
-                # session["user_id"] = str(user["_id"])
-                # session["profile_image"] = user["_id"]
+
+                session.clear()
+                session['first_name'] = user.first_name
+                session["user_id"] = str(user.id)
+                session["profile_image"] = user.image
 
                 return redirect(url_for('blog.home'))
             else:
@@ -115,4 +117,3 @@ def login():
 @bp.route('/logout', methods=['GET', 'POST'])
 def logout():
     pass
-
