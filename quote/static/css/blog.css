@@ -1,7 +1,7 @@
 body {
     /*background: #a1a1a1;*/
     font-family: "Shabnam", serif;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .bd-placeholder-img {
@@ -33,5 +33,3 @@ a:hover {
 a:active {
     text-decoration: none;
 }
-
-
