@@ -5,7 +5,6 @@ from .database import get_db
 def create_cats():
     categories = list()
     db = get_db()
-    db.drop_database('blog')
 
     cat1 = Category(parent='Technology', children=['Programming', 'AI', 'Linux'])
     cat2 = Category(parent='Trading', children=['Forex', 'Cryptocurrency', 'Wallstreet'])
