@@ -1,50 +1,62 @@
 {% extends "/user/base.html" %} {% block title %} Sign in {% endblock %} {% block content %}
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="alert alert-danger" role="alert" id="alert_msg">
-                {{ messages[0][1] }}
+    {#    {% with messages = get_flashed_messages(with_categories=true) %}#}
+    {#        {% if messages %}#}
+    {#        {% endif %}#}
+    {#    {% endwith %}#}
+
+
+    <div class="wrapper">
+        <div class="inner">
+            <div class="image-holder">
+                <img src="static/images/login.png" alt="register">
+                <div style="display:flex;justify-content:center;">
+                    <span> No account? <a href="{{ url_for('blog.register') }}"> Sign up </a></span>
+                </div>
             </div>
-        {% endif %}
-    {% endwith %}
+            <form method="POST" enctype="multipart/form-data" action="{{ url_for('blog.login') }}">
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <form method="POST" enctype="multipart/form-data" action="{{ url_for('blog.login') }}">
 
-                    <h3>
-                        Sign in
-                    </h3>
-
-                    <label>
-                        <p class="label-txt">Username</p>
-                        <input type="text" name="user_name" id="user_name" class="input">
-                        <div class="line-box">
-                            <div class="line"></div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="alert alert-danger" role="alert" id="alert_msg">
+                            <h6>{{ messages[0][1] }}</h6>
                         </div>
-                    </label>
+                    {% endif %}
+                {% endwith %}
 
+                <h3></h3>
 
+                <div class="form-wrapper">
                     <label>
-                        <p class="label-txt">Password</p>
-                        <input type="password" name="password" id="password" class="input">
-                        <div class="line-box">
-                            <div class="line"></div>
-                        </div>
+                        <input type="text" name="user_name" minlength="4" maxlength="50" required
+                               placeholder="Username"
+                               class="form-control">
                     </label>
-
-                    <button type="submit"> Sing in</button>
-                    <div style="margin-top:50px;">
-                        <p> No account? <a href="{{ url_for('blog.register') }}"> Create One </a></p>
-                    </div>
+                    <i class="zmdi zmdi-account"></i>
+                </div>
 
 
-                </form>
-            </div>
+                <div class="form-wrapper">
+                    <label>
+                        <input type="password" minlength="8" maxlength="50" required placeholder="Password"
+                               name="password"
+                               class="form-control">
+                    </label>
+                    <i class="zmdi zmdi-lock"></i>
+                </div>
+
+
+                <button>Sign in
+                    <i class="zmdi zmdi-arrow-right"></i>
+                </button>
+
+            </form>
         </div>
+
     </div>
 
-{% endblock %} {% block js %}
+{% endblock %}
+{% block js %}
     <script src="{{ url_for('static', filename='js/user.js') }}"></script>
 {% endblock %}

@@ -1,91 +1,87 @@
 {% extends "/user/base.html" %} {% block title %} Sign Up {% endblock %} {% block content %}
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="alert alert-danger" role="alert" id="alert_msg">
-                {{ messages[0][1] }}
+    {#    {% with messages = get_flashed_messages(with_categories=true) %}#}
+    {#        {% if messages %}#}
+    {##}
+    {#        {% endif %}#}
+    {#    {% endwith %}#}
+
+    <div class="wrapper">
+        <div class="inner">
+            <div class="image-holder">
+                <img src="static/images/register.png" alt="register">
+                <div style="display:flex;justify-content:center;">
+                    <span> Already have an account? <a href="{{ url_for('blog.login') }}"> Sign in </a></span>
+                </div>
             </div>
-        {% endif %}
-    {% endwith %}
+            <form method="POST" enctype="multipart/form-data" action="{{ url_for('blog.register') }}">
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-
-                <form method="POST" enctype="multipart/form-data" action="{{ url_for('blog.register') }}">
-
-                    <h3>
-                        Sign up
-                    </h3>
-
-                    <label>
-                        <p class="label-txt"> Username </p>
-                        <input type="text" name="user_name" id="user_name" class="input">
-                        <div class="line-box">
-                            <div class="line"></div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="alert alert-danger" role="alert" id="alert_msg">
+                            <h6>{{ messages[0][1] }}</h6>
                         </div>
-                    </label>
+                    {% endif %}
+                {% endwith %}
 
+                <h3>Create new account</h3>
+
+                <div class="form-group">
+
+                    <input type="text" required
+                           minlength="2" maxlength="50" name="first_name" placeholder="First Name"
+                           class="form-control">
+                    <input type="text" required
+                           name="last_name" minlength="2" maxlength="50" placeholder="Last Name"
+                           class="form-control">
+                </div>
+
+                <div class="form-wrapper">
                     <label>
-                        <p class="label-txt"> First name </p>
-                        <input type="text" name="first_name" id="first_name" class="input">
-                        <div class="line-box">
-                            <div class="line"></div>
-                        </div>
+                        <input type="text" name="user_name" required
+                               minlength="4" maxlength="50" placeholder="Username" class="form-control">
                     </label>
+                    <i class="zmdi zmdi-account"></i>
+                </div>
 
+                <div class="form-wrapper">
                     <label>
-                        <p class="label-txt">Last name</p>
-                        <input type="text" name="last_name" id="last_name" class="input">
-                        <div class="line-box">
-                            <div class="line"></div>
-                        </div>
+                        <input type="text" maxlength="50" name="email" placeholder="Email Address"
+                               class="form-control">
                     </label>
+                    <i class="zmdi zmdi-email"></i>
+                </div>
 
+                <div class="form-wrapper">
                     <label>
-                        <p class="label-txt">Password</p>
-                        <input type="password" name="password" id="password" class="input">
-                        <div class="line-box">
-                            <div class="line"></div>
-                        </div>
+                        <input type="password" required name="password"
+                               minlength="8" maxlength="50" placeholder="Password" class="form-control">
                     </label>
+                    <i class="zmdi zmdi-lock"></i>
+                </div>
 
-
+                <div class="form-wrapper">
                     <label>
-                        <p class="label-txt">Email</p>
-                        <input type="text" name="email" id="email" class="input">
-                        <div class="line-box">
-                            <div class="line"></div>
-                        </div>
+                        <input type="text" required
+                               minlength="11" maxlength="11" name="phone_number" placeholder="Phone number"
+                               class="form-control">
                     </label>
+                    <i class="zmdi zmdi-account"></i>
+                </div>
 
-                    <label>
-                        <p class="label-txt">Phone number</p>
-                        <input type="text" name="phone_number" id="phone_number" class="input">
-                        <div class="line-box">
-                            <div class="line"></div>
-                        </div>
-                    </label>
+                <div class="form-wrapper">
+                    <label class="custom-file-upload">
+                        <input type="file" name="profile_image" class="form-control"/>
+                        <i class="fa fa-cloud-upload"></i> Profile image
+                </div>
 
-                    <label>
-                        <p class="label-txt">Choose profile image</p>
-                        <input type="file" name="profile_image" id="profile_image" class="input" style="width:110px;">
-                        <div class="line-box">
-                            <div class="line"></div>
-                        </div>
-                    </label>
+                <button>Sign up
+                    <i class="zmdi zmdi-arrow-right"></i>
+                </button>
 
-
-                    <button type="submit"> Sign up</button>
-
-                    <div style="margin-top:50px;">
-                        <p> Already have an account? <a href="{{ url_for('blog.login') }}"> Sign in </a></p>
-                    </div>
-
-                </form>
-            </div>
+            </form>
         </div>
     </div>
-
-{% endblock %} {% block js %}
+{% endblock %}
+{% block js %}
     <script src="{{ url_for('static', filename='js/user.js') }}"></script>
 {% endblock %}
