@@ -34,56 +34,43 @@ def tag(tag_id):
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
-    try:
 
-        if request.method == 'POST':
-            user_name = request.form.get("user_name")
-            first_name = request.form.get("first_name")
-            last_name = request.form.get("last_name")
-            password = request.form.get("password")
-            email = request.form.get("email")
-            phone_number = request.form.get("phone_number")
-            file = request.files.get('profile_image')
-            if file:
-                file_name = secure_filename(file.filename)
-                file.save('quote/static/images/profile_images/' + file_name)
-                image = file_name
-            else:
-                image = None
+    if request.method == 'POST':
+        image = None
+        user_name = request.form.get("user_name")
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
+        password = request.form.get("password")
+        email = request.form.get("email")
+        phone_number = request.form.get("phone_number")
+        file = request.files.get('profile_image')
 
-            db = get_db()
-            email_exists = User.objects(email=email).first()
-            username_exists = User.objects(user_name=user_name).first()
+        if file:
+            file_name = secure_filename(file.filename)
+            file.save('quote/static/images/profile_images/' + file_name)
+            image = file_name
 
-            if email_exists:
-                flash('Email is already in use.', 'error')
-            elif username_exists:
-                flash('Username is already in use.', 'error')
-            elif len(user_name) < 2:
-                flash('Username is too short.', 'error')
-            elif len(password) < 6:
-                flash('Password is too short.', 'error')
-            elif len(email) < 6:
-                flash("Email is invalid.", 'error')
-            else:
-                new_user = User(
-                    user_name=user_name,
-                    first_name=first_name,
-                    last_name=last_name,
-                    password=generate_password_hash(password, method='sha256'),
-                    phone_number=phone_number,
-                    email=email,
-                    image=image
-                )
+        db = get_db()
+        username_exists = User.objects(user_name=user_name).first()
 
-                new_user.save()
+        if username_exists:
+            flash('Username is already in use.', 'error')
+        else:
+            new_user = User(
+                user_name=user_name,
+                first_name=first_name,
+                last_name=last_name,
+                password=generate_password_hash(password, method='sha256'),
+                phone_number=phone_number,
+                email=email,
+                image=image
+            )
 
-                return redirect(url_for('blog.home'))
+            new_user.save()
 
-        return render_template("user/register.html")
+            return redirect(url_for('blog.login'))
 
-    except FieldDoesNotExist:
-        return render_template("user/register.html")
+    return render_template("user/register.html")
 
 
 @bp.route('/login', methods=['GET', 'POST'])
