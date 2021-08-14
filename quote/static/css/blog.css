@@ -1,5 +1,4 @@
 body {
-    /*background: #a1a1a1;*/
     font-family: "Shabnam", serif;
     margin-bottom: 50px;
 }
@@ -32,4 +31,30 @@ a:hover {
 
 a:active {
     text-decoration: none;
+}
+
+.Avatar {
+    border-radius: 50%;
+    width: 60px;
+}
+
+.banner {
+    background-color: #3C8DAD;
+}
+
+.text {
+    text-align: justify;
+    text-justify: auto;
+}
+
+.navbar {
+    margin-bottom: 10px;
+}
+
+.dropdown {
+    padding-right: 10px;
+}
+
+.butts {
+    padding-right: 10px;
 }
