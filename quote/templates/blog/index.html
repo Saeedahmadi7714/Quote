@@ -1,5 +1,5 @@
 {% extends "/blog/base.html" %} {% block title %}Quote{% endblock %} {% block navbar %}
-
+{#{% block name %}<b>{{  user.get('first_name')  }}</b>{% endblock %}#}
 <div class="nav-scroller py-1 mb-2 bg-dark">
     <nav class="nav d-flex justify-content-between">
         {% for category in categories %} {% for key,value in category.items() %} {% if key == 'parent' %}
