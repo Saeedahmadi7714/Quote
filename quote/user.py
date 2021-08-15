@@ -9,8 +9,8 @@ def profile():
     pass
 
 
-@bp.route('/posts-list/')
-def posts_list():
+@bp.route('/posts-list/<user_id>/')
+def posts_list(user_id):
     pass
 
 

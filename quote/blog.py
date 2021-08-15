@@ -101,6 +101,7 @@ def login():
     return render_template("user/login.html")
 
 
-@bp.route('/logout', methods=['GET', 'POST'])
+@bp.route('/logout')
 def logout():
-    pass
+    session.clear()
+    return redirect(url_for("blog.home"))

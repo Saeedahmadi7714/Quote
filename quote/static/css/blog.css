@@ -1,5 +1,5 @@
 body {
-    font-family: "Shabnam", serif;
+    font-family: "Shabnam", Serif;
     margin-bottom: 50px;
 }
 
@@ -36,6 +36,7 @@ a:active {
 .Avatar {
     border-radius: 50%;
     width: 60px;
+    margin-left: 10px;
 }
 
 .banner {
@@ -52,9 +53,17 @@ a:active {
 }
 
 .dropdown {
-    padding-right: 10px;
+    padding: 0;
+}
+
+.search {
+    height: 30px;
 }
 
 .butts {
-    padding-right: 10px;
+    margin-top: 5px;
+}
+
+.navbar-brand {
+    font-family: "Serif";
 }
