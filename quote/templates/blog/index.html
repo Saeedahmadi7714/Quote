@@ -5,17 +5,19 @@
 
         <a class="col-3 text-light navbar-brand" href="{{ url_for('blog.home') }}">Quote</a>
 
-        <div class="col-6">
+        <div class="col-7">
             <div class="nav-scroller py-1 mb-2 bg-dark"></div>
             <nav class="nav d-flex justify-content-start">
                 {% for category in categories %} {% for key,value in category.items() %} {% if key == 'parent' %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link link-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link link-light dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
                         {{ value }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% for each in category['children'] %}
-                        <li><a class="dropdown-item" href="#">{{ each }}</a></li> {% endfor %} {% endif %}
+                        <li><a class="dropdown-item" href="#">{{ each }}</a></li>
+                        {% endfor %} {% endif %}
                     </ul>
                 </li>
                 {% endfor %} {% endfor %}
@@ -24,15 +26,18 @@
 
 
         {% if True %}
-        <div class="col-3 d-flex justify-content-end align-items-center">
+        <div class="col-2 d-flex justify-content-end align-items-center">
             <a class="link-secondary" href="#" aria-label="Search">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title>
-                            <circle cx="10.5" cy="10.5" r="7.5"></circle>
-                            <path d="M21 21l-5.2-5.2"></path>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img"
+                     viewBox="0 0 24 24"><title>Search</title>
+                    <circle cx="10.5" cy="10.5" r="7.5"></circle>
+                    <path d="M21 21l-5.2-5.2"></path>
                 </svg>
             </a>
             <div class="dropdown">
-                <img class="Avatar" alt="Avatar" src="{{ url_for('static', filename='images/avatar.png') }}" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                <img class="Avatar" alt="Avatar" src="{{ url_for('static', filename='images/avatar.png') }}"
+                     id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <li>
                         <p class="dropdown-header">Signed in as <b>user</b></p>
@@ -48,12 +53,14 @@
             </div>
         </div>
         {% else %}
-        <div class="col-3 d-flex justify-content-end align-items-center">
+        <div class="col-2 d-flex justify-content-end align-items-center">
             <a class="link-secondary" href="#" aria-label="Search">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title>
-                                <circle cx="10.5" cy="10.5" r="7.5"></circle>
-                                <path d="M21 21l-5.2-5.2"></path>
-                            </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img"
+                     viewBox="0 0 24 24"><title>Search</title>
+                    <circle cx="10.5" cy="10.5" r="7.5"></circle>
+                    <path d="M21 21l-5.2-5.2"></path>
+                </svg>
             </a>
             <div class="butts d-grid gap-2 d-md-block">
                 <a href="{{ url_for('blog.login') }}">
@@ -76,15 +83,24 @@
     <div class="col-md-12">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block mb-2 text-dark">Random Post</strong>
-                <h3 class="mb-0">Coding is a Trap. Get Out.</h3>
+                <strong class="d-inline-block mb-2 text-dark">Architecture</strong>
+                <h3 class="mb-0">You said it: the number 1 barrier to digital design in Australia</h3>
                 <div class="mb-1 text-muted">Nov 12</div>
-                <p class="card-text mb-auto">Chasing skills to remain economically viable is just the beginning of the trap. Coding tends to pay significantly higher than most jobs, making a move to a project management position or management position is often lateral in compensation.</p>
+                <p class="card-text mb-auto" align="justify">In October 2016, the Institute of Digital Design
+                    Australia (IDDA) conducted a survey with Architecture & Design readers with the aim of sharing
+                    the key trends, challenges and forecasts associated with digital design tools in the Australian
+                    architectural design industry. Architects, engineers and construction companies were asked a
+                    series of questions about digital design.</p>
                 <a href="#" class="stretched-link">Continue reading</a>
             </div>
             <div class="col-auto d-none d-lg-block">
-                <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
+                <!--                <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img"-->
+                <!--                     aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>-->
+                <!--                    Placeholder</title>-->
+                <!--                    <rect width="100%" height="100%" fill="#55595c"></rect>-->
+                <!--                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>-->
+                <!--                </svg>-->
+                <img style=" width:400px; height:320px" src="static/images/design.jpg" alt="design">
             </div>
         </div>
     </div>
@@ -99,14 +115,33 @@
         <div class="col-md-12">
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">World</strong>
-                    <h3 class="mb-0">Featured post</h3>
+                    <strong class="d-inline-block mb-2 text-primary">Science</strong>
+                    <h3 class="mb-0">Solar Corona</h3>
                     <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text mb-auto" align="justify">NASA researchers successfully launched a sophisticated
+                        X-ray solar imager on a brief but potentially illuminating suborbital flight via sounding rocket
+                        to gather
+                        new insight regarding how and why the Sun’s corona grows so much hotter than the actual surface
+                        of Earth’s parent star.
+
+                        “Our knowledge of the corona’s heating mechanisms is limited, partly because we’ve not yet been
+                        able to make detailed observations and measurements of the temperature distribution of the solar
+                        plasma in the region,” said Marshall heliophysicist Amy Winebarger, principal investigator for
+                        the MaGIXS mission.
+
+                        The Sun’s surface temperature is more than 10,000 degrees Fahrenheit – but the corona routinely
+                        measures more than 1.8 million degrees Fahrenheit.</p>
                     <a href="#" class="stretched-link">Continue reading</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
-                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                    <!--                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"-->
+                    <!--                         role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"-->
+                    <!--                         focusable="false"><title>Placeholder</title>-->
+                    <!--                        <rect width="100%" height="100%" fill="#55595c"></rect>-->
+                    <!--                        <img src="https://www.nasa.gov/sites/default/files/images/740364main_latest_4096_0171-full_full.jpg" alt="register">-->
+                    <img style=" width:250px; height:300px" src="static/images/solar.jpg" alt="solar">
+                    <!--                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>-->
+                    <!--                    </svg>-->
 
                 </div>
             </div>
@@ -114,45 +149,81 @@
         <div class="col-md-12">
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">World</strong>
-                    <h3 class="mb-0">Featured post</h3>
+                    <strong class="d-inline-block mb-2 text-primary">Black Hole</strong>
+                    <h3 class="mb-0">Goodbye Big Bang, Hello Black Hole? A New Theory Of The Universe’s Creation</h3>
                     <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text mb-auto" align="justify">Could the famed “Big Bang” theory need a revision? A
+                        group of
+                        theoretical physicists suppose the birth of the universe could have happened after a
+                        four-dimensional star collapsed into a black hole and ejected debris.
+                        So what are the limitations of the Big Bang theory? The singularity is one of them. Also, it’s
+                        hard to predict why it would have produced a universe that has an almost uniform temperature,
+                        because the age of our universe (about 13.8 billion years) does not give enough time — as far as
+                        we can tell — to reach a temperature equilibrium.
+
+                    </p>
                     <a href="#" class="stretched-link">Continue reading</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
-                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
+                    <!--                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"-->
+                    <!--                         role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"-->
+                    <!--                         focusable="false"><title>Placeholder</title>-->
+                    <!--                        <rect width="100%" height="100%" fill="#55595c"></rect>-->
+                    <!--                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>-->
+                    <!--                    </svg>-->
+                    <img style=" width:250px; height:300px" src="static/images/blockhole.png" alt="blockhole">
                 </div>
             </div>
         </div>
         <div class="col-md-12">
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">World</strong>
-                    <h3 class="mb-0">Featured post</h3>
+                    <strong class="d-inline-block mb-2 text-primary">Brain</strong>
+                    <h3 class="mb-0">Brain connectivity can build better AI</h3>
                     <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text mb-auto" align="justify">A new study shows that artificial intelligence
+                        networks based on human brain connectivity can perform cognitive tasks efficiently.
+                        By examining MRI data from a large Open Science repository, researchers reconstructed a brain
+                        connectivity pattern, and applied it to an artificial neural network (ANN). An ANN is a
+                        computing system consisting of multiple input and output units, much like the biological brain.
+                        A team of researchers from The Neuro (Montreal Neurological Institute-Hospital) and the Quebec
+                        Artificial Intelligence Institute trained the ANN to perform a cognitive memory task and
+                        observed how it worked to complete the assignment.</p>
                     <a href="#" class="stretched-link">Continue reading</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
-                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
+                    <!--                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"-->
+                    <!--                         role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"-->
+                    <!--                         focusable="false"><title>Placeholder</title>-->
+                    <!--                        <rect width="100%" height="100%" fill="#55595c"></rect>-->
+                    <!--                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>-->
+                    <!--                    </svg>-->
+                    <img style=" width:250px; height:300px" src="static/images/brain.jpg" alt="brain">
                 </div>
             </div>
         </div>
         <div class="col-md-12">
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">World</strong>
-                    <h3 class="mb-0">Featured post</h3>
+                    <strong class="d-inline-block mb-2 text-primary">Art</strong>
+                    <h3 class="mb-0">Craft one-of-a-kind art pieces at these acrylic pour workshops</h3>
                     <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text mb-auto" align="justify">2020 saw us starting on many new hobbies like
+                        gardening, embroidery and board games, just to name a few.
+
+                        Yet, many of us are still finding new things to do on this 728-square kilometre piece of land we
+                        call home. With travel still off the cards (we know, we’re quite miserable about it too), we’re
+                        here to share another hobby you might want to pick up: acrylic pouring.</p>
                     <a href="#" class="stretched-link">Continue reading</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
-                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
+                    <!--                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"-->
+                    <!--                         role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"-->
+                    <!--                         focusable="false"><title>Placeholder</title>-->
+                    <!--                        <rect width="100%" height="100%" fill="#55595c"></rect>-->
+                    <!--                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>-->
+                    <!--                    </svg>-->
+                    <img style=" width:250px; height:300px" src="static/images/acrylic.jpg" alt="acrylic">
                 </div>
             </div>
         </div>
@@ -160,15 +231,24 @@
         <div class="col-md-12">
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">World</strong>
-                    <h3 class="mb-0">Featured post</h3>
+                    <strong class="d-inline-block mb-2 text-primary">Architecture</strong>
+                    <h3 class="mb-0">You said it: the number 1 barrier to digital design in Australia</h3>
                     <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text mb-auto" align="justify"> In October 2016, the Institute of Digital Design
+                        Australia (IDDA) conducted a survey with Architecture & Design readers with the aim of sharing
+                        the key trends, challenges and forecasts associated with digital design tools in the Australian
+                        architectural design industry. Architects, engineers and construction companies were asked a
+                        series of questions about digital design.</p>
                     <a href="#" class="stretched-link">Continue reading</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
-                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
+                    <!--                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"-->
+                    <!--                         role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"-->
+                    <!--                         focusable="false"><title>Placeholder</title>-->
+                    <!--                        <rect width="100%" height="100%" fill="#55595c"></rect>-->
+                    <!--                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>-->
+                    <!--                    </svg>-->
+                    <img style=" width:250px; height:300px" src="static/images/design.jpg" alt="design">
                 </div>
             </div>
         </div>
@@ -184,7 +264,10 @@
 <div class="position-sticky" style="top: 2rem;">
     <div class="p-4 mb-3 bg-light rounded">
         <h4 class="fst-italic">About Us</h4>
-        <p class="mb-0"><b>Hello people of earth!</b> We are three friends learning how to develop a website using <b>flask</b> framework on a bootcamp named MaktbSharif and this is our first project together as a team, Please let us know if you think of anyway to improve
+        <p class="mb-0" align="justify"><b>Hello people of earth!</b> We are three friends learning how to develop a
+            website using <b>flask</b>
+            framework on a bootcamp named MaktbSharif and this is our first project together as a team, Please let us
+            know if you think of anyway to improve
             our site, and Make yourselves at home :D
         </p>
     </div>
