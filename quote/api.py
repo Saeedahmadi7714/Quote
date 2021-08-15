@@ -4,8 +4,8 @@ from .database import get_db
 bp = Blueprint("api", __name__, url_prefix="/api")
 
 
-@bp.route('/posts_list/')
-def posts_list():
+@bp.route('/posts_list/<user_id>/')
+def posts_list(user_id):
     pass
 
 
