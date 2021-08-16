@@ -47,9 +47,15 @@ def change_password():
         return redirect(url_for('blog.login'))
 
     db = get_db()
+    old_password = request.form.get('old_password')
     new_password = request.form.get('password')
     user = User.objects(id=session['user_id']).first()
-    user.password = generate_password_hash(new_password, method='sha256')
-    user.save()
-    flash('Your password successfully changed.')
+    if check_password_hash(user["password"], old_password):
+        user.password = generate_password_hash(new_password, method='sha256')
+        user.save()
+        print('=========================OK')
+        flash('Your password successfully changed.')
+        return redirect(url_for('user.profile'))
+
+    flash('Your old password is incorrect.', 'error')
     return redirect(url_for('user.profile'))
