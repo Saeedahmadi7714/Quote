@@ -215,5 +215,9 @@ input[type="file"] {
 
 /*for user profile template*/
 .margin_top {
-    margin-top:10%;
+    margin-top:5%;
+}
+
+.password-top {
+  margin-top:25px;
 }
