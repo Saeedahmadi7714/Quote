@@ -17,7 +17,7 @@ class Post(Document):
     author = ReferenceField('User', reverse_delete_rule=CASCADE)
     content = StringField(max_length=5000)
     categories = ListField()
-    image_path = StringField(max_length=200)
+    image = StringField(max_length=200)
     status = BooleanField(required=True, default=True)
     pub_date = DateTimeField()
     likes = ListField()
