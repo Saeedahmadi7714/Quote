@@ -1,7 +1,9 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session, url_for, redirect
+
+from .models import User
 from .database import get_db
 
-bp = Blueprint("api", __name__, url_prefix="/api")
+bp = Blueprint("api", __name__)
 
 
 @bp.route('/posts_list/<user_id>/')
@@ -39,6 +41,6 @@ def user_profile(user_id):
     pass
 
 
-@bp.route('/logout/')
 def logout():
-    pass
+    session.clear()
+    return redirect(url_for("blog.home"))
