@@ -36,6 +36,7 @@ def tag(tag_id):
 def register():
 
     if request.method == 'POST':
+
         image = None
         user_name = request.form.get("user_name")
         first_name = request.form.get("first_name")
