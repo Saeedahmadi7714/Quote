@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from .models import User
+from .models import User, Post
 from .database import get_db
 
 bp = Blueprint("user", __name__, url_prefix="/user")
@@ -26,9 +26,13 @@ def profile():
     return redirect(url_for('user.profile'))
 
 
-@bp.route('/posts-list/<user_id>/')
-def posts_list(user_id):
-    pass
+@bp.route('/posts-list/')
+def posts_list():
+    db = get_db()
+    user_id = session["user_id"]
+    first_name = session["first_name"]
+    user_posts = Post.objects(author=user_id)
+    return render_template("user/dashboard.html", user_posts=user_posts, first_name=first_name)
 
 
 @bp.route('/create-post/')
