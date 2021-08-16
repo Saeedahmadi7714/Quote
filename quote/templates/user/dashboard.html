@@ -2,77 +2,78 @@
 {% block title %} Dashboard {% endblock %}{% block content %}
 
 
-<div class="content-page">
-    <!-- Start content -->
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="breadcrumb-holder">
-                        <h1 class="main-title text-center" style="font-family:sans-serif;">
-                            {{ first_name }}'s dashboard
-                             </h1>
-                        <div class="clearfix"></div>
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="breadcrumb-holder">
+                            <h1 class="main-title text-center" style="font-family:sans-serif;">
+                                {{ first_name }}'s dashboard
+                            </h1>
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- end row -->
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <div class="card mb-3">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th style="min-width: 50px">Article details</th>
-                                <th style="width:600px">Title</th>
-                                <th style="width:150px">Category</th>
-                                <th style="min-width:200px">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for post in user_posts %}
-                            <tr>
-                                <td>
-                                    <div class="blog_list " >
-                                        <img class=" img-fluid d-none d-lg-block " alt="image", style="height: 150px; width: 200px;"
-                                                                src="{{ url_for('static', filename='images/posts_images/' + post.image_path) }}">
-                                    </div>
-                                </td>
-                                <td>
+                <!-- end row -->
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="card mb-3">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="min-width: 50px">Article details</th>
+                                    <th style="width:600px">Title</th>
+                                    <th style="width:150px">Category</th>
+                                    <th style="min-width:200px">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for post in user_posts %}
+                                    <tr>
+                                        <td>
+                                            <div class="blog_list ">
+                                                <img class=" img-fluid d-none d-lg-block " alt="image" ,
+                                                     style="height: 150px; width: 200px;"
+                                                     src="{{ url_for('static', filename='images/posts_images/' + post.image_path) }}">
+                                            </div>
+                                        </td>
+                                        <td>
 
-                                    <h4 style="text-align: center">{{ post.title }}</h4>
+                                            <h4 style="text-align: center">{{ post.title }}</h4>
 
-                                </td>
-                                <td>{{ post.categories }}</td>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                               id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            Active
-                                        </label>
-                                    </div>
+                                        </td>
+                                        <td>{{ post.categories }}</td>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                       id="defaultCheck1">
+                                                <label class="form-check-label" for="defaultCheck1">
+                                                    Active
+                                                </label>
+                                            </div>
 
-                                    <br>
+                                            <br>
 
-                                    <a href="{{ url_for( 'user.edit_post', post_id = post.id )}}"
-                                       class="btn btn-primary btn-sm btn-block"><i
-                                            class="far fa-edit"></i> Edit</a>
-                                    <a href="#"
-                                       class="btn btn-danger btn-sm btn-block"
-                                       style="background-color: #ff5d48"><i class="fas fa-trash"></i>Delete</a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                            <a href="{{ url_for( 'user.edit_post', post_id = post.id ) }}"
+                                               class="btn btn-primary btn-sm btn-block"><i
+                                                    class="far fa-edit"></i> Edit</a>
+                                            <a href="#"
+                                               class="btn btn-danger btn-sm btn-block"
+                                               style="background-color: #ff5d48"><i class="fas fa-trash"></i>Delete</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 {% endblock %}
