@@ -211,3 +211,9 @@ input[type="file"] {
   display: flex;
   justify-content: center;
 }
+
+
+/*for user profile template*/
+.margin_top {
+    margin-top:10%;
+}
