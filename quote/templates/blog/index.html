@@ -39,7 +39,7 @@
                         <p class="dropdown-header ">Signed in as <b>{{ user.get('first_name') }}</b></p>
                     </li>
                     <li><a class="dropdown-item " href="{{ url_for( 'api.posts_list', user_id=user.get('user_id')) }} ">Dashboard</a></li>
-                    <li><a class="dropdown-item " href="{{ url_for( 'api.user_profile', user_id=user.get('user_id')) }} ">Profile</a></li>
+                    <li><a class="dropdown-item " href="{{ url_for( 'user.profile' ) }} ">Profile</a></li>
                     <li><a class="dropdown-item " href="# ">Write</a></li>
                     <li>
                         <hr class="dropdown-divider ">
