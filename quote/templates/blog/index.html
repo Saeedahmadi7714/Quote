@@ -28,7 +28,7 @@
             </form>
 
 
-            {% if user.get('first_name') %}
+            {% if user %}
             <div class="dropdown">
                 <a class="btn  dropdown" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     <img class="Avatar " alt="Avatar " src="{{ url_for('static', filename='images/profile_images/' + user.get('profile_image')) }}">
@@ -38,9 +38,9 @@
                     <li>
                         <p class="dropdown-header ">Signed in as <b>{{ user.get('first_name') }}</b></p>
                     </li>
-                    <li><a class="dropdown-item " href="{{ url_for( 'user.posts_list')}} ">Dashboard</a></li>
-                    <li><a class="dropdown-item " href="{{ url_for( 'user.profile' ) }} ">Profile</a></li>
-                    <li><a class="dropdown-item " href="# ">Write</a></li>
+                    <li><a class="dropdown-item " href="{{ url_for( 'user.posts_list') }} ">Dashboard</a></li>
+                    <li><a class="dropdown-item " href="{{ url_for( 'user.profile') }} ">Profile</a></li>
+                    <li><a class="dropdown-item " href="{{ url_for( 'user.create_post') }}">Write</a></li>
                     <li>
                         <hr class="dropdown-divider ">
                     </li>

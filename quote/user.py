@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
+from .categories import create_cats
 
 from .models import User, Post
 from .database import get_db
@@ -37,7 +38,17 @@ def posts_list():
 
 @bp.route('/create-post/')
 def create_post():
-    pass
+    if session:
+        user = session
+        if request.method == 'POST':
+    
+            # password = request.form.get("password")
+            # user_name = request.form.get("user_name")
+            db = get_db()
+            
+            return redirect(url_for('blog.home'))
+        
+    return render_template("user/create_post.html", user=user, categories=create_cats())
 
 
 @bp.route('/edit-post/<post_id>/')

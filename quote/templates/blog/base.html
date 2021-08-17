@@ -31,6 +31,7 @@
     </div>
 
     <main class="container">
+        {% block banner %}
         <div class="banner p-4 p-md-5 mb-4 text-white rounded">
             <div class="col-md-6 px-0">
                 <h1 class="display-4 fst-italic"><b>Welcome to QUOTE!</b></h1>
@@ -38,8 +39,7 @@
 
             </div>
         </div>
-
-        {% block TRENDING %} {% endblock %}
+        {% endblock %} {% block TRENDING %} {% endblock %}
 
         <div class="row g-5">
 
