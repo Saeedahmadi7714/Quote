@@ -1,8 +1,10 @@
-{% extends "/blog/base.html" %} {% block title %}Dashboard{% endblock %} {% block banner %}{% endblock %} {% block navbar %}
+{% extends "/blog/base.html" %}{% block banner %}{% endblock %}
+{% block title %} Dashboard {% endblock %}{% block navbar %}
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand text-light" href="{{ url_for('blog.home') }}">Quote</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -11,12 +13,14 @@
 
                 {% for category in categories %} {% for key,value in category.items() %} {% if key == 'parent' %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link link-light dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link link-light dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
                         {{ value }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% for each in category['children'] %}
-                        <li><a class="dropdown-item" href="#">{{ each }}</a></li> {% endfor %}
+                        <li><a class="dropdown-item" href="#">{{ each }}</a></li>
+                        {% endfor %}
                     </ul>
                 </li>
                 {% endif %}{% endfor %}{% endfor %}
@@ -30,8 +34,10 @@
 
             {% if user %}
             <div class="dropdown">
-                <a class="btn  dropdown" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="Avatar " alt="Avatar " src="{{ url_for('static', filename='images/profile_images/' + user.get('profile_image')) }}">
+                <a class="btn  dropdown" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    <img class="Avatar " alt="Avatar "
+                         src="{{ url_for('static', filename='images/profile_images/' + user.get('profile_image')) }}">
                 </a>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -39,7 +45,8 @@
                         <p class="dropdown-header ">Signed in as <b>{{ user.get('first_name') }}</b></p>
                     </li>
                     <li><a class="dropdown-item " href="{{ url_for( 'user.posts_list') }} ">Dashboard</a></li>
-                    <li><a class="dropdown-item " href="{{ url_for( 'api.user_profile', user_id=user.get('user_id')) }} ">Profile</a></li>
+                    <li><a class="dropdown-item "
+                           href="{{ url_for( 'api.user_profile', user_id=user.get('user_id')) }} ">Profile</a></li>
                     <li><a class="dropdown-item " href="{{ url_for( 'user.create_post') }}">Write</a></li>
                     <li>
                         <hr class="dropdown-divider ">
@@ -67,7 +74,9 @@
 
     </div>
 </nav>
-{% endblock %}{% block content %}
+{% endblock %}
+
+{% block content %}
 
 
 <div class="content-page">
@@ -77,9 +86,9 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="breadcrumb-holder">
-                        <h1 class="main-title text-center" style="font-family:sans-serif;">
+                        <h5 class="main-title text-center" style="font-family:sans-serif;">
                             {{ first_name }}'s dashboard
-                        </h1>
+                        </h5>
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -90,43 +99,49 @@
                     <div class="card mb-3">
                         <table class="table table-bordered">
                             <thead>
-                                <tr>
-                                    <th style="min-width: 50px">Article details</th>
-                                    <th style="width:600px">Title</th>
-                                    <th style="width:150px">Category</th>
-                                    <th style="min-width:200px">Actions</th>
-                                </tr>
+                            <tr>
+                                <th style="min-width: 50px">Article details</th>
+                                <th style="width:400px">Title</th>
+                                <th style="width:150px">Category</th>
+                                <th style="min-width:200px">Actions</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                {% for post in user_posts %}
-                                <tr>
-                                    <td>
-                                        <div class="blog_list ">
-                                            <img class=" img-fluid d-none d-lg-block " alt="image" , style="height: 150px; width: 200px;" src="{{ url_for('static', filename='images/posts_images/' + post.image) }}">
-                                        </div>
-                                    </td>
-                                    <td>
+                            {% for post in user_posts %}
+                            <tr>
+                                <td>
+                                    <div class="blog_list ">
+                                        <img class=" img-fluid d-none d-lg-block " alt="image" ,
+                                             style="height: 150px; width: 200px;"
+                                             src="{{ url_for('static', filename='images/posts_images/' + post.image) }}">
+                                    </div>
+                                </td>
+                                <td>
 
-                                        <h4 style="text-align: center">{{ post.title }}</h4>
+                                    <h4 style="text-align: center">{{ post.title }}</h4>
 
-                                    </td>
-                                    <td>{{ post.categories }}</td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                            <label class="form-check-label" for="defaultCheck1">
-                                                    Active
-                                                </label>
-                                        </div>
+                                </td>
+                                <td>{{ post.categories }}</td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                               id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            Active
+                                        </label>
+                                    </div>
 
-                                        <br>
+                                    <br>
 
-                                        <a href="{{ url_for( 'user.edit_post', post_id = post.id ) }}" class="btn btn-primary btn-sm btn-block"><i
-                                                    class="far fa-edit"></i> Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm btn-block" style="background-color: #ff5d48"><i class="fas fa-trash"></i>Delete</a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
+                                    <a href="{{ url_for( 'user.edit_post', post_id = post.id ) }}"
+                                       class="btn btn-primary btn-sm btn-block"><i
+                                            class="far fa-edit"></i> Edit</a>
+                                    <a href="#"
+                                       class="btn btn-danger btn-sm btn-block"
+                                       style="background-color: #ff5d48"><i class="fas fa-trash"></i>Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>

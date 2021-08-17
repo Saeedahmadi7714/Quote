@@ -31,11 +31,14 @@ def profile():
 
 @bp.route('/posts-list/')
 def posts_list():
-    db = get_db()
-    user_id = session["user_id"]
-    first_name = session["first_name"]
-    user_posts = Post.objects(author=user_id)
-    return render_template("user/dashboard.html", user_posts=user_posts, first_name=first_name)
+    if session:
+        db = get_db()
+        user_id = session["user_id"]
+        first_name = session["first_name"]
+        user_posts = Post.objects(author=user_id)
+        return render_template("user/dashboard.html", user_posts=user_posts, first_name=first_name)
+    else:
+        return redirect(url_for('blog.login'))
 
 
 @bp.route('/create-post/', methods=['GET', 'POST'])
