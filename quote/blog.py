@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, session
-from .models import User, Post, Comment, Tag
+from .models import User, Post, Comment, Tag,Category
 from .database import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
@@ -14,7 +14,8 @@ bp = Blueprint("blog", __name__)
 def home():
     db = get_db()
     user = session
-    return render_template("blog/index.html", categories=create_cats(), user=user)
+    posts = Post.objects()
+    return render_template("blog/index.html", categories=create_cats(), user=user, posts=posts)
 
 
 @bp.route('/post/<post_id>')
