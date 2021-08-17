@@ -2,12 +2,21 @@
 <html lang="">
 
 <head>
+
+
+    {#    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">#}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+
     <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--Bootstrap cdn-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!--JQuery cdn-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
@@ -15,7 +24,8 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/blog.css') }}">
 
     <!--Shabnam font-->
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/shabnam-font@v5.0.1/dist/font-face.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/shabnam-font@v5.0.1/dist/font-face.css" rel="stylesheet"
+          type="text/css"/>
 
 
     <title>{% block title %}Quote{% endblock %}</title>
@@ -26,42 +36,44 @@
 
 <body cz-shortcut-listen="true">
 
-    <div class="container">
-        {% block navbar %}{% endblock %}
-    </div>
+<div class="container">
+    {% block navbar %}{% endblock %}
+</div>
 
-    <main class="container">
-        {% block banner %}
+<main class="container">
+    {% block banner %}
         <div class="banner p-4 p-md-5 mb-4 text-white rounded">
             <div class="col-md-6 px-0">
-                <h1 class="display-4 fst-italic"><b>Welcome to QUOTE!</b></h1>
-                <p class="lead my-3">Share your thoughts with others freely and enjoy reading daily contents as well.</p>
+                <h1><b>Welcome to QUOTE!</b></h1>
+                <p class="lead my-3">Share your thoughts with others freely and enjoy reading daily contents as
+                    well.</p>
 
             </div>
         </div>
-        {% endblock %} {% block TRENDING %} {% endblock %}
+    {% endblock %} {% block TRENDING %} {% endblock %}
 
-        <div class="row g-5">
+    <div class="row g-5">
 
-            {% block content %} {% endblock %}
+        {% block content %} {% endblock %}
 
-            <div class="col-md-4">
-                {% block sidebar %} {% endblock %}
-            </div>
-
+        <div class="col-md-4">
+            {% block sidebar %} {% endblock %}
         </div>
 
-    </main>
+    </div>
 
-    <footer class="blog-footer">
-        {% block footer %} {% endblock %}
-    </footer>
+</main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<footer class="blog-footer">
+    {% block footer %} {% endblock %}
+</footer>
 
-    <script src="{{ url_for('static', filename='js/blog.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
 
-    {#Link custom js files in here #} {% block js %}{% endblock %}
+<script src="{{ url_for('static', filename='js/blog.js') }}"></script>
+
+{#Link custom js files in here #} {% block js %}{% endblock %}
 
 </body>
 
