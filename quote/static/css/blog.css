@@ -1,5 +1,5 @@
 body {
-    font-family: "Shabnam", Serif;
+
     margin-bottom: 50px;
 }
 
@@ -10,7 +10,7 @@ body {
     -moz-user-select: none;
     user-select: none;
     width: 250px;
-    height: 300px;
+    height: 200px;
 }
 
 @media (min-width: 768px) {
@@ -43,6 +43,9 @@ a:active {
 
 .banner {
     background-color: #3C8DAD;
+    height: 250px;
+    display: flex;
+    justify-content: center;
 }
 
 .text,
@@ -68,6 +71,7 @@ a:active {
     margin-top: 5px;
 }
 
-.navbar-brand {
-    font-family: "Serif";
-}
+/*.navbar-brand {*/
+/*    font-family: "Serif";*/
+/*}*/
+
