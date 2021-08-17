@@ -12,6 +12,7 @@ html {
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
+    background: #d0e6ef;
     color: #666;
 }
 
@@ -22,7 +23,7 @@ body {
 
 .title {
     margin-bottom: 20px;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .form-select {
@@ -67,4 +68,9 @@ textarea {
     float: right;
     padding: 0.1rem 0 0 0;
     font-size: 0.875rem;
+}
+
+.autocomplete {
+    position: relative;
+    display: inline-block;
 }
