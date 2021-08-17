@@ -63,7 +63,7 @@ def create_post():
                 title=title,
                 author=author,
                 content=content,
-                categories=[categories],
+                categories=[{"children":categories}],
                 status=status,
                 pub_date=pub_date,
                 image=image

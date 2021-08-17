@@ -9,6 +9,8 @@ body {
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
+    width: 250px;
+    height: 300px;
 }
 
 @media (min-width: 768px) {
@@ -43,7 +45,8 @@ a:active {
     background-color: #3C8DAD;
 }
 
-.text {
+.text,
+.card-text {
     text-align: justify;
     text-justify: auto;
 }
@@ -58,7 +61,8 @@ a:active {
 
 .search {
     margin-top: 7px;
-    height: 25px;}
+    height: 25px;
+}
 
 .butts {
     margin-top: 5px;
