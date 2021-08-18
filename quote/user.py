@@ -85,7 +85,7 @@ def create_post():
 
 @bp.route('/edit-post/<post_id>/')
 def edit_post(post_id):
-    pass
+    return render_template("user/edit_post.html")
 
 
 @bp.route('/change_password/', methods=['POST'])
