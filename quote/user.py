@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, session, redirect, url_for, reques
 from werkzeug.security import generate_password_hash, check_password_hash
 from .categories import create_cats
 from werkzeug.utils import secure_filename
-from .models import User, Post
+from .models import User, Post, Tag
 from .database import get_db
 from datetime import datetime
 
@@ -44,6 +44,7 @@ def posts_list():
 @bp.route('/create-post/', methods=['GET', 'POST'])
 def create_post():
     if session:
+        tags = Tag.objects()
         
         if request.method == 'POST':
             title = request.form.get("title")
@@ -76,7 +77,7 @@ def create_post():
             
             return redirect(url_for('blog.home'))
         
-        return render_template("user/create_post.html", categories=create_cats())
+        return render_template("user/create_post.html", categories=create_cats(),tags = tags)
     
     else:
         return redirect(url_for('blog.login'))
