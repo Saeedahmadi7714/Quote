@@ -1,5 +1,4 @@
 body {
-
     margin-bottom: 50px;
 }
 
@@ -55,6 +54,7 @@ a:active {
 }
 
 .navbar {
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
@@ -71,7 +71,11 @@ a:active {
     margin-top: 5px;
 }
 
-/*.navbar-brand {*/
-/*    font-family: "Serif";*/
-/*}*/
 
+/*.navbar-brand {*/
+
+
+/*    font-family: "Serif";*/
+
+
+/*}*/
