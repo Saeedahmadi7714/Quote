@@ -6,7 +6,6 @@ from .models import User, Post, Tag
 from .database import get_db
 from datetime import datetime
 
-
 bp = Blueprint("user", __name__, url_prefix="/user")
 
 
@@ -37,15 +36,13 @@ def posts_list():
         first_name = session["first_name"]
         user_posts = Post.objects(author=user_id)
         return render_template("user/dashboard.html", user_posts=user_posts, first_name=first_name)
-    else:
-        return redirect(url_for('blog.login'))
 
 
 @bp.route('/create-post/', methods=['GET', 'POST'])
 def create_post():
     if session:
         tags = Tag.objects()
-        
+
         if request.method == 'POST':
             title = request.form.get("title")
             author = session['user_id']
@@ -60,25 +57,25 @@ def create_post():
                 file_name = secure_filename(file.filename)
                 file.save('quote/static/images/posts_images/' + file_name)
                 image = file_name
-                
+
             db = get_db()
-            
+
             new_post = Post(
                 title=title,
                 author=author,
                 content=content,
-                categories=[{"children":categories}],
+                categories=[{"children": categories}],
                 status=status,
                 pub_date=pub_date,
                 image=image
             )
 
             new_post.save()
-            
+
             return redirect(url_for('blog.home'))
-        
-        return render_template("user/create_post.html", categories=create_cats(),tags = tags)
-    
+
+        return render_template("user/create_post.html", categories=create_cats(), tags=tags)
+
     else:
         return redirect(url_for('blog.login'))
 
