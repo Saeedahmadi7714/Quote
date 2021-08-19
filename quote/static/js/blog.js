@@ -1,0 +1,68 @@
+// Like
+$(".like").click(function () {
+    $(this).toggleClass("red");
+});
+
+
+// Comment
+// Send from data when user clicked on Send button
+$(document).ready(function () {
+
+    $("#comment-btn").click(function (event) {
+
+        //Stop submit the form, we will post it manually.
+        event.preventDefault();
+
+        // Get form
+        const form = $('#commentForm')[0];
+
+        // Create an FormData object
+        const data = new FormData(form);
+
+        const comment = $('#comment').val()
+        const postId = $('#postId').html()
+        const userId = $('#userId').html()
+
+        // Add an extra field for the FormData
+        data.append("comment", comment);
+        data.append("postId", postId);
+        data.append("userId", userId);
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/create_comment/",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function () {
+
+                // Cleaning comment text area
+                $('#comment').val('')
+                console.log("SUCCESS :");
+
+
+                // Add comment which is sent by user
+                $('#comment-row').append(`<div class="col-10 post_cols " id="comment-col" style="border-bottom: 5px solid #797979;border-top: 5px solid #797979;margin-top: 25px;">
+                <p> ${comment} </p>
+            </div>`)
+                //
+                //  $('#createTourModal').css('display', 'none');
+                //  alert('Your tour successfully created. ')
+
+
+            },
+            error: function (e) {
+
+
+                console.log("ERROR : ", e);
+                $("#createBtn").prop("disabled", false);
+
+            }
+        });
+
+    });
+
+});
