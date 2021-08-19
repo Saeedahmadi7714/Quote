@@ -39,7 +39,7 @@ class Post(Document):
 
 class Comment(Document):
     owner = ReferenceField('User', reverse_delete_rule=CASCADE)
-    text = StringField(max_length=200)
+    text = StringField(max_length=250)
     created_date = DateTimeField()
 
 
