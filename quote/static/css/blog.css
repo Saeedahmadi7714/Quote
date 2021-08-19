@@ -148,7 +148,14 @@ a:active {
     justify-content: center;
 }
 
-#comment-btn{
+#comment-btn {
     height: 95%;
     margin-left: 10px;
+}
+
+#commentOwnerImage {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+
 }
