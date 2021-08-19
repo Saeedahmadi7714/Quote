@@ -1,10 +1,11 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, session
-from .models import User, Post, Comment, Tag,Category
+from .models import User, Post, Comment, Tag, Category
 from .database import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-from mongoengine import FieldDoesNotExist
 from .categories import create_cats
+from .Utils import reading_time
+from textblob import TextBlob
 
 bp = Blueprint("blog", __name__)
 
@@ -18,9 +19,18 @@ def home():
     return render_template("blog/index.html", categories=create_cats(), user=user, posts=posts)
 
 
-@bp.route('/post/<post_id>')
+@bp.route('/post/<post_id>/')
 def post(post_id):
-    pass
+    db = get_db()
+    user = session
+    post_details = Post.objects(id=post_id).first()
+
+    # Detect language from title to set text direction
+    blobline = TextBlob(post_details.title)
+    language = blobline.detect_language()
+
+    return render_template("blog/post.html", categories=create_cats(), post=post_details, user=user,
+                           reading_time=reading_time(post_details.content), language=language)
 
 
 @bp.route('/category-posts/<category_id>')
