@@ -1,6 +1,6 @@
 from flask import Blueprint, session, url_for, redirect, request, jsonify
 from datetime import datetime
-from .models import User, Comment, Post
+from .models import User, Comment, Post, Tag
 from .database import get_db
 
 bp = Blueprint("api", __name__)
@@ -50,6 +50,21 @@ def categories_list():
 @bp.route('/tags-list/')
 def tags_list():
     pass
+
+@bp.route('/tags/', methods=['GET', 'POST'])
+def tags():
+    if request.method == 'GET':
+        db = get_db()
+        obj = []
+        tags = Tag.objects()
+        
+        for item in tags:
+            item = item.to_mongo().to_dict()
+            del item["_id"]
+            obj.append(item)
+        # print(obj)    
+        return jsonify(obj)
+        
 
 
 @bp.route('/search/')
