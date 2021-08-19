@@ -32,9 +32,13 @@ def posts_list(user_id):
     pass
 
 
-@bp.route('/post-delete/<post_id>')
+@bp.route('/post-delete/<post_id>/', methods=['POST'])
 def post_delete(post_id):
-    pass
+    if request.method == "POST":
+        db = get_db()
+        post = Post.objects(id=post_id).first()
+        post.delete()
+        return ""
 
 
 @bp.route('/post_deactivate/<post_id>/')
