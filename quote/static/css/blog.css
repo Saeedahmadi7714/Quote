@@ -72,10 +72,83 @@ a:active {
 }
 
 
-/*.navbar-brand {*/
+/*Show post*/
+
+.post_cols {
+    display: flex;
+    justify-content: center;
+}
 
 
-/*    font-family: "Serif";*/
+#post_image {
+    width: 70%;
+    height: 50%;
+}
 
+#title {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
 
-/*}*/
+.post_author {
+    color: #3C8DAD;
+    margin-left: 40px;
+    display: flex;
+    justify-content: center;
+    height: 50%;
+}
+
+#post_author_image {
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+    float: right
+}
+
+#lines {
+    font-family: 'Roboto Slab', serif;
+    line-height: 2;
+
+}
+
+.post-image-col {
+    height: 25%;
+
+}
+
+#tag-like-row {
+    padding-top: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+#likes {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/*For like toggle*/
+.like {
+    width: 25px;
+    height: 25px;
+    background-color: #ffffff;
+}
+
+.like.red {
+    color: #ff0000;
+}
+
+.like-counter {
+    padding-right: 10px;
+}
+
+.comment-col {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+#comment-btn{
+    height: 95%;
+    margin-left: 10px;
+}
