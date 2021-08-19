@@ -36,7 +36,11 @@ def post(post_id):
 
 @bp.route('/category-posts/<category_id>')
 def category(category_id):
-    pass
+    db = get_db()
+    user = session
+    posts = Post.objects()
+    
+    return render_template("blog/category.html", user=user, posts=posts)
 
 
 @bp.route('/tag-posts/<tag_id>')

@@ -1,4 +1,4 @@
-{% extends "/blog/base.html" %} {% block title %}Quote{% endblock %} {% block banner %}{% endblock %} {% block css %}
+{% extends "/blog/base.html" %} {% block title %}New Post{% endblock %} {% block banner %}{% endblock %} {% block css %}
 <link rel="stylesheet" href="{{ url_for('static',filename='css/create_post.css') }}"> {% endblock %} {% block content %}
 
 <form autocomplete="off" method="POST" enctype="multipart/form-data" action="{{ url_for('user.create_post') }}">
