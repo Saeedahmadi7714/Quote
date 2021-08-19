@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash, session
+from flask import Blueprint, render_template, redirect, url_for, request, flash, session, jsonify
 from .models import User, Post, Comment, Tag, Category
 from .database import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -16,6 +16,7 @@ def home():
     db = get_db()
     user = session
     posts = Post.objects()
+    
     return render_template("blog/index.html", categories=create_cats(), user=user, posts=posts)
 
 
@@ -35,7 +36,11 @@ def post(post_id):
 
 @bp.route('/category-posts/<category_id>')
 def category(category_id):
-    pass
+    db = get_db()
+    user = session
+    posts = Post.objects()
+    
+    return render_template("blog/category.html", user=user, posts=posts)
 
 
 @bp.route('/tag-posts/<tag_id>')
