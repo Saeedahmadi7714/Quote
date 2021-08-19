@@ -18,7 +18,7 @@ def create_comment():
 
         # Create a comment
         user = User.objects(id=user_id).first()
-        new_comment = Comment(owner=user.id, text=comment, created_date=datetime.now())
+        new_comment = Comment(owner=user, text=comment, created_date=datetime.now())
         new_comment.save()
 
         post.comments.append(new_comment)
