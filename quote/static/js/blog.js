@@ -22,11 +22,13 @@ $(document).ready(function () {
         const comment = $('#comment').val()
         const postId = $('#postId').html()
         const userId = $('#userId').html()
+        const userFirstName = $('#userFirstName').html()
 
         // Add an extra field for the FormData
         data.append("comment", comment);
         data.append("postId", postId);
         data.append("userId", userId);
+
 
         $.ajax({
             type: "POST",
@@ -45,13 +47,11 @@ $(document).ready(function () {
 
 
                 // Add comment which is sent by user
-                $('#comment-row').append(`<div class="col-10 post_cols " id="comment-col" style="border-bottom: 5px solid #797979;border-top: 5px solid #797979;margin-top: 25px;">
-                <p> ${comment} </p>
-            </div>`)
-                //
-                //  $('#createTourModal').css('display', 'none');
-                //  alert('Your tour successfully created. ')
-
+                $('#comment-row').append(`<div class="col-8 " id="comment-col"
+                         style="border-bottom: 5px solid #797979;border-top: 5px solid #797979;margin-top: 25px;">
+                        <h4>${userFirstName}</h4>
+                        <p> ${comment} </p>
+                    </div>`)
 
             },
             error: function (e) {
