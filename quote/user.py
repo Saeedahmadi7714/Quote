@@ -63,6 +63,7 @@ def create_post():
 
             db_tag_names = []
             db_tag_obj = Tag.objects()
+            all_new_tags = []
                     
             for item in db_tag_obj:
                 db_tag_names.append(item.name)
@@ -73,6 +74,10 @@ def create_post():
                         name=i
                     )
                     new_tag.save()
+                    all_new_tags.append(new_tag)
+                else:
+                    tag_existed = Tag.objects(name=i).first()
+                    all_new_tags.append(tag_existed)
                     
             new_post = Post(
                 title=title,
@@ -80,15 +85,11 @@ def create_post():
                 content=content,
                 categories=[{"children": categories}],
                 status=status,
-                tags=tags,
+                tags = all_new_tags,
                 pub_date=pub_date,
                 image=image
             )
             new_post.save()
-            
-            
-                    
-    
             
 
             return redirect(url_for('blog.home'))
@@ -99,9 +100,55 @@ def create_post():
         return redirect(url_for('blog.login'))
 
 
-@bp.route('/edit-post/<post_id>/')
+@bp.route('/edit-post/<post_id>/', methods=['GET', 'POST'])
 def edit_post(post_id):
-    return render_template("user/edit_post.html")
+    if session:
+            if request.method == 'POST':
+                title = request.form.get("title")
+                content = request.form.get("erfan")
+             
+                
+              
+                tags = request.form.get("new_tag")
+                tags = tags[0:len(tags)-1].split(" ")
+                
+    
+                db = get_db()
+    
+                db_tag_names = []
+                db_tag_obj = Tag.objects()
+                all_new_tags = []
+                        
+                for item in db_tag_obj:
+                    db_tag_names.append(item.name)
+                
+                for tag in tags:
+                    if tag not in db_tag_names:
+                        new_tag = Tag(
+                            name=tag
+                        )
+                        new_tag.save()
+                        all_new_tags.append(new_tag)
+                    else:
+                        tag_existed = Tag.objects(name=tag).first()
+                        all_new_tags.append(tag_existed)
+                    
+                
+                post = Post.objects(id=post_id).first()
+
+                post.content = content
+                post.title = title
+                post.tags = all_new_tags
+                post.save()
+
+
+                return redirect(url_for('blog.home'))
+    
+            return render_template("user/edit_post.html", categories=create_cats(), post_id=post_id)
+    
+    else:
+        return redirect(url_for('blog.login'))
+
 
 
 @bp.route('/change_password/', methods=['POST'])
