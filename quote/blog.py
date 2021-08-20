@@ -4,7 +4,7 @@ from .database import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from .categories import create_cats
-from .Utils import reading_time
+from .Utils import reading_time, random_post
 from textblob import TextBlob
 
 bp = Blueprint("blog", __name__)
@@ -16,7 +16,10 @@ def home():
     db = get_db()
     user = session
     posts = Post.objects()
-    
+    # Random post
+    r_t = random_post()
+    if r_t:
+        return render_template("blog/index.html", categories=create_cats(), user=user, posts=posts, rand_post=r_t)
     return render_template("blog/index.html", categories=create_cats(), user=user, posts=posts)
 
 
@@ -26,7 +29,7 @@ def post(post_id):
     user = session
     post_details = Post.objects(id=post_id).first()
 
-    # Detect language from title to set text direction
+    # Detect language from title for setting text direction
     blobline = TextBlob(post_details.title)
     language = blobline.detect_language()
 
@@ -39,7 +42,7 @@ def category(category_id):
     db = get_db()
     user = session
     posts = Post.objects()
-    
+
     return render_template("blog/category.html", user=user, posts=posts)
 
 
