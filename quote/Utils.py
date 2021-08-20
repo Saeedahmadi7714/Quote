@@ -1,3 +1,8 @@
+from random import randint
+from .database import get_db
+from .models import Post
+
+
 # Write your custom classes and functions here
 
 # Estimating post reading time
@@ -26,3 +31,20 @@ def reading_time(content):
 
     # If read_time is round without decimal places
     final_time = read_time
+    return final_time
+
+
+# Random Post for using in index page
+def random_post():
+    db = get_db()
+
+    # Count all posts in database
+    posts_count = Post.objects().count()
+
+    if posts_count:
+        # Return a random post from all posts in database
+        r_t = Post.objects()[[randint(0, posts_count - 1)][0]]
+        return r_t
+
+    # If posts == 0
+    return 0
