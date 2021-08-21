@@ -33,7 +33,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
-            url: "/create_comment/",
+            url: "/api/create_comment/",
             data: data,
             processData: false,
             contentType: false,
