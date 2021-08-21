@@ -129,74 +129,77 @@
         {#Page content#}
         <div class="container-fluid" style="direction: rtl;font-family: 'Shabnam', sans-serif;
 ">
-        {#    Post Title#}
-        <div class="row">
-            <div class="col-12 post_cols">
-                <h1 id="title"> {{ post.title | title }} </h1>
+            {#    Post Title#}
+            <div class="row">
+                <div class="col-12 post_cols">
+                    <h1 id="title"> {{ post.title | title }} </h1>
+                </div>
             </div>
-        </div>
 
-        {#    Post author#}
-        <div class="row post_author" style="direction: ltr">
+            {#    Post author#}
+            <div class="row post_author" style="direction: ltr">
 
-            <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 ">
+                <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 ">
 
-                <img id="post_author_image"
-                     src="{{ url_for('static', filename='images/profile_images/' + post.author.image) }}"
-                     alt="{{ post.author.first_name }} "
-                />
-            </div>
-            <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-6 col-sm-6 col-6 ">
+                    <img id="post_author_image"
+                         src="{{ url_for('static', filename='images/profile_images/' + post.author.image) }}"
+                         alt="{{ post.author.first_name }} "
+                    />
+                </div>
+                <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-6 col-sm-6 col-6 ">
 
-                <h4>{{ post.author.first_name | capitalize }}{{ post.author.last_name }} </h4>
+                    <h4>{{ post.author.first_name | capitalize }}{{ post.author.last_name }} </h4>
 
-                <div class="col-xxl-12 col-xl-12 col-lg-3 col-lg-12 col-md-6 col-sm-6 col-12"
-                >
-                    <p>{{ reading_time }} min read</p>
-
-                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                    <div class="col-xxl-12 col-xl-12 col-lg-3 col-lg-12 col-md-6 col-sm-6 col-12"
                     >
-                        <p> {{ post.pub_date.strftime('%Y-%m-%d') }} </p>
-                    </div>
+                        <p>{{ reading_time }} min read</p>
 
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                        >
+                            <p> {{ post.pub_date.strftime('%Y-%m-%d') }} </p>
+                        </div>
+
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
-
-        {#    Post Image#}
-        <div class="row">
-            <div class="col-12 post_cols post-image-col">
-                <img id="post_image" src="{{ url_for('static', filename='images/posts_images/' + post.image) }}"
-                     alt="Post Image">
+            {#    Post Image#}
+            <div class="row">
+                <div class="col-12 post_cols post-image-col">
+                    <img id="post_image" src="{{ url_for('static', filename='images/posts_images/' + post.image) }}"
+                         alt="Post Image">
+                </div>
             </div>
-        </div>
 
-        {#    Post Content#}
-        <div class="row post_cols">
-            <div class="col-8">
+            {#    Post Content#}
+            <div class="row post_cols">
+                <div class="col-8">
 
-                {% set content=post.content.split('\n') %}
+                    {% set content=post.content.split('\n') %}
 
-                {% for line in content %}
-                    <p id="lines">
-                        {{ line | safe }}
-                    </p>
-                {% endfor %}
+                    {% for line in content %}
+                        <p id="lines">
+                            {{ line | safe }}
+                        </p>
+                    {% endfor %}
 
+                </div>
             </div>
-        </div>
-
-        <div class="row" id="tag-like-row">
-
-            <div class="col-12 col-sm-4" id="tags">
-                {% for tag in post.tags %}
-                    <span class="badge rounded-pill bg-dark">{{ tag.name }}</span>
-                {% endfor %}
 
 
+            {#            Tags#}
+            <div class="row" id="tag-like-row">
+
+                <div class="col-12 col-sm-4" id="tags">
+                    {% for tag in post.tags %}
+                        <span class="badge rounded-pill bg-dark">{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+
+                {#            Like#}
                 <div class="col-12 col-sm-4" id="likes">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -211,15 +214,14 @@
             </div>
 
 
-            {#Comment area#}
             <div class="row">
                 <div class=" comment-col col-12 ">
                     <form method="POST" id="commentForm" enctype="multipart/form-data">
                         <label for="comment" style="margin-top: 3%">
-                        </label><strong>نظر خود را با ما در میان بگذارید:</strong> <textarea id="comment"
-                                                                                             name="comment" rows="5"
-                                                                                             cols="50"
-                                                                                             maxlength="250">
+                        </label><strong>نظر خود را بنویسید</strong> <textarea id="comment"
+                                                                              name="comment" rows="5"
+                                                                              cols="50"
+                                                                              maxlength="250">
 
                     </textarea>
 
@@ -235,17 +237,20 @@
                 </div>
             </div>
 
-            {#    Comments#}
-            <div class="row post_cols" id="comment-row">
-                {% for comment in post.comments %}
-                    <div class="col-8 " id="comment-col"
-                         style="border-bottom: 5px solid #797979;border-top: 5px solid #797979;margin-top: 25px;">
-                        <p> {{ comment.owner.first_name }} </p>
-                        <p> {{ comment.text }} </p>
-                    </div>
-                {% endfor %}
 
-            </div>
+        </div>
+
+        {#    Comments#}
+        <div class="row post_cols" id="comment-row">
+            {% for comment in post.comments %}
+                <div class="col-8 " id="comment-col"
+                     style="border-bottom: 5px solid #797979;border-top: 5px solid #797979;margin-top: 25px;">
+                    <h4> {{ comment.owner.first_name }} </h4>
+                    <p> {{ comment.text }} </p>
+                </div>
+            {% endfor %}
+
+        </div>
 
         </div>
 
@@ -496,7 +501,7 @@
                 {% for comment in post.comments %}
                     <div class="col-8 " id="comment-col"
                          style="border-bottom: 5px solid #797979;border-top: 5px solid #797979;margin-top: 25px;">
-                        <p> {{ comment.owner.first_name }} </p>
+                        <h4> {{ comment.owner.first_name }} </h4>
                         <p> {{ comment.text }} </p>
                     </div>
                 {% endfor %}
@@ -620,7 +625,7 @@
                          style="border-bottom: 5px solid #797979;border-top: 5px solid #797979;margin-top: 25px;">
                         {#                        <img id="commentOwnerImage" src="{{ url_for('static', filename='images/profile_images/' + comment.owner.image) }}"#}
                         {#                             alt="{{ comment.owner.first_name }}'s avatar"/>#}
-                        <h3>{{ comment.owner.first_name }}</h3>
+                        <h4>{{ comment.owner.first_name }}</h4>
                         <p> {{ comment.created_date.strftime('%Y-%m-%d') }} </p>
                         <p> {{ comment.text }} </p>
                     </div>
@@ -640,3 +645,5 @@
 
 </body>
 </html>
+
+
