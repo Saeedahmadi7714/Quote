@@ -124,7 +124,7 @@ $("#myInput").on("input", function (event) {
     $.ajax({
         type: "GET",
         enctype: 'multipart/form-data',
-        url: "/tags/",
+        url: "/api/tags/",
         data: data,
         processData: false,
         contentType: false,
