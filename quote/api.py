@@ -3,7 +3,24 @@ from datetime import datetime
 from .models import User, Comment, Post, Tag
 from .database import get_db
 
-bp = Blueprint("api", __name__)
+bp = Blueprint("api", __name__, url_prefix="/api")
+
+
+@bp.route('/posts_list/')
+def posts_list(user_id):
+    pass
+
+
+@bp.route('/category-list/')
+def categories_list():
+    if request.method == 'GET':
+        result = {"Name": 'Saeed'}
+        return jsonify(result)
+
+
+@bp.route('/tags-list/')
+def tags_list():
+    pass
 
 
 @bp.route('/create_comment/', methods=['POST'])
@@ -23,13 +40,7 @@ def create_comment():
 
         post.comments.append(new_comment)
         post.save()
-        print(post.comments)
         return jsonify(comment)
-
-
-@bp.route('/posts_list/<user_id>/')
-def posts_list(user_id):
-    pass
 
 
 @bp.route('/post-delete/<post_id>/', methods=['POST'])
@@ -46,29 +57,19 @@ def post_deactivate(post_id):
     pass
 
 
-@bp.route('/category-list/')
-def categories_list():
-    pass
-
-
-@bp.route('/tags-list/')
-def tags_list():
-    pass
-
 @bp.route('/tags/', methods=['GET', 'POST'])
 def tags():
     if request.method == 'GET':
         db = get_db()
         obj = []
         tags = Tag.objects()
-        
+
         for item in tags:
             item = item.to_mongo().to_dict()
             del item["_id"]
             obj.append(item)
-        # print(obj)    
+        # print(obj)
         return jsonify(obj)
-        
 
 
 @bp.route('/search/')
@@ -79,9 +80,3 @@ def search():
 @bp.route('/user-profile/<user_id>')
 def user_profile(user_id):
     pass
-
-
-@bp.route('/logout')
-def logout():
-    session.clear()
-    return redirect(url_for("blog.home"))
