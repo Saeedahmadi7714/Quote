@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from flask import Blueprint, session, url_for, redirect, request, jsonify
 from datetime import datetime
 from .models import User, Comment, Post, Tag
@@ -7,7 +9,7 @@ bp = Blueprint("api", __name__, url_prefix="/api")
 
 
 @bp.route('/posts_list/')
-def posts_list(user_id):
+def posts_list():
     pass
 
 
@@ -70,6 +72,35 @@ def tags():
             obj.append(item)
         # print(obj)
         return jsonify(obj)
+
+
+@bp.route('/like/', methods=['GET', 'POST'])
+def like():
+    if request.method == "POST":
+        db = get_db()
+
+        # Get data from ajax
+        data = request.get_data(as_text=True).split('&')
+        # User id who liked the post
+        user_id_from_ajax = data[0].split('=')[1]
+        # Post id which is user liked
+        post_id_from_ajax = data[1].split('=')[1]
+
+        # Get user from database
+        user = User.objects(id=user_id_from_ajax).first()
+        # Get post from database
+        post = Post.objects(id=post_id_from_ajax).first()
+
+        if user in post.likes:
+            post.likes.remove(user)
+            post.save()
+            # print('Bud pak kardam.')
+            return 'Deleted'
+        else:
+            post.likes.append(user)
+            post.save()
+            # print('NaBud ezafe kardam.')
+            return 'Added'
 
 
 @bp.route('/search/')
