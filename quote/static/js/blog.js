@@ -1,7 +1,41 @@
 // Like
-$(".like").click(function () {
-    $(this).toggleClass("red");
-});
+
+$(document).ready(function () {
+    $(".like").click(function () {
+        $(this).toggleClass("red");
+        const userId = $('#userId').html()
+        const postId = $('#postId').html()
+        // const likeCounter = $('#likeCounter').html()
+        $.ajax({
+
+            url: '/api/like/',
+            type: 'POST',
+            data: {
+                'userId': userId
+                , 'postId': postId
+            },
+
+            success: function (data) {
+                // const likeCounter = $('#likeCounter').html()
+                if (data === 'Added') {
+                    $('#likeCounter').html('Thanks for your support')
+
+                } else {
+                    $('#likeCounter').html('Do you like this post?')
+
+                }
+            }
+            ,
+            error: function (e) {
+
+
+                console.log("ERROR : ", e);
+            }
+        });
+
+    });
+})
+;
 
 
 // Comment
