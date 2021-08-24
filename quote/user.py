@@ -1,10 +1,11 @@
-from flask import Blueprint, render_template, session, redirect, url_for, request, flash
+from flask import Blueprint, render_template, session, redirect, url_for, request, flash, current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from .categories import create_cats
 from werkzeug.utils import secure_filename
 from .models import User, Post, Tag
 from .database import get_db
 from datetime import datetime
+import os
 
 bp = Blueprint("user", __name__, url_prefix="/user")
 
@@ -51,11 +52,20 @@ def create_post():
             pub_date = datetime.now()
             tags = request.form.get("new_tag")
             tags = tags[0:len(tags) - 1].split(" ")
-
             file = request.files.get('image')
+
+            if len(tags) > 6:
+                flash('You can only choose 6 tags, Please try again.', 'error')
+                return redirect(url_for('user.create_post'))
 
             if file:
                 file_name = secure_filename(file.filename)
+                file_ext = os.path.splitext(file_name)[1]
+                
+                if file_ext not in current_app.config['UPLOAD_EXTENSIONS']:
+                    flash('Your image must be one of these types: [.jpg, .png, .gif].', 'error')
+                    return redirect(url_for('user.create_post'))
+
                 file.save('quote/static/images/posts_images/' + file_name)
                 image = file_name
 
@@ -108,6 +118,10 @@ def edit_post(post_id):
 
             tags = request.form.get("new_tag")
             tags = tags[0:len(tags) - 1].split(" ")
+            
+            if len(tags) > 6:
+                # flash('You can only choose 6 tags, Please try again.', 'error')
+                return redirect(url_for('user.posts_list'))
 
             db = get_db()
 

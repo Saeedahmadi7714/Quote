@@ -100,7 +100,7 @@
         Latest Quotes
     </h3>
 
-    <div class="row mb-2">
+    <div id="content" class="row mb-2">
         {% for post in posts %} {% if post.status %}
 
         <div class="col-md-12 ">
@@ -113,7 +113,7 @@
                                 reading</a>
                 </div>
                 <div class="col-auto d-none d-lg-block ">
-                    <img src="{{ url_for('static', filename='images/posts_images/' + post.image) }}" alt="some picture" class="bd-placeholder-img">
+                    <img src="{{ url_for('static', filename='images/posts_images/' + post.image) }}" alt="post image" class="bd-placeholder-img">
 
                 </div>
             </div>
@@ -131,11 +131,11 @@
         </p>
     </div>
 
-    <div class="p-4 ">
+    <div class="p-4">
         <h5>TOPICS YOU MIGHT LIKE</h5>
-        <ol class="list-unstyled mb-0 ">
-            {% for category in categories %}
-            <li><a href="# ">{{ category['parent'] }}</a></li>
+        <ol class="list-unstyled mb-0 row">
+            {% for tag in tags %}
+            <li class="col-3" id="{{ tag.id }}" onclick="post_by_tag(this.id)"><a href="#">{{ tag.name }}</a></li>
             {% endfor %}
         </ol>
     </div>
@@ -146,5 +146,6 @@
             <li><a href="https://github.com/Saeedahmadi7714/quote ">GitHub</a></li>
         </ol>
     </div>
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
 </div>
 {% endblock %} {% block footer %} {% endblock %}
