@@ -54,9 +54,17 @@ def post_delete(post_id):
         return ""
 
 
-@bp.route('/post_deactivate/<post_id>/')
+@bp.route('/post_deactivate/<post_id>/', methods=['POST'])
 def post_deactivate(post_id):
-    pass
+    if request.method == "POST":
+        db = get_db()
+        post = Post.objects(id=post_id).first()
+        if post.status:
+            post.status = False
+        else:
+            post.status = True
+        post.save()
+        return ""
 
 
 @bp.route('/tags/', methods=['GET', 'POST'])
