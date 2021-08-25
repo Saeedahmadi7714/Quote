@@ -60,7 +60,6 @@ def tag(tag_id):
         for post in posts:
             for tag in post.tags:
                 if str(tag.id) == (tag_id):
-                    # print(tag.id,"==", tag_id)
                     post = post.to_mongo().to_dict()
                     del post["categories"]
                     del post["likes"]
@@ -69,8 +68,7 @@ def tag(tag_id):
                     del post["author"]
                     post["_id"] = str(post["_id"])
                     post_obj.append(post)
-
-        print(post_obj)          
+         
         return jsonify(post_obj)
 
 

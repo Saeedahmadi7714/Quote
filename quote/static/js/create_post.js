@@ -2,6 +2,7 @@ function Add() {
     var x = document.getElementById("myInput").value;
     $("#res").append('<span class = "badge rounded-pill bg-primary">' + x + '</span>');
     $('#new_tag').val($('#new_tag').val() + x + ' ');
+    $('#myInput').val('');
 }
 
 function autocomplete(inp, arr) {
@@ -112,7 +113,7 @@ function autocomplete(inp, arr) {
 }
 
 
-// get tags fro database
+// get tags from database
 $("#myInput").on("input", function(event) {
     const tag = $('#myInput').val()
     const data = {
@@ -133,7 +134,6 @@ $("#myInput").on("input", function(event) {
             for (let tag in data) {
                 tag_list.push(data[tag].name)
             }
-            // $("#res").append(`<p> ${ a } </p>`)
 
             /*initiate the autocomplete function on the "myInput" element, and pass along the tag_list array as possible autocomplete values:*/
             autocomplete(document.getElementById("myInput"), tag_list);
