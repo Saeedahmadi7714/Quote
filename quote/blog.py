@@ -16,7 +16,7 @@ bp = Blueprint("blog", __name__)
 def home():
     db = get_db()
     user = session
-    posts = Post.objects()
+    posts = Post.objects(status=True)
     tags = Tag.objects()
 
     # Random post
@@ -45,19 +45,21 @@ def post(post_id):
 def category(category_name):
     db = get_db()
     user = session
-    posts = Post.objects()
+    posts = Post.objects(status=True)
+    tags = Tag.objects()
     post_with_category = list()
     for item in posts:
         if category_name in item.categories[0].values():
             post_with_category.append(item)
-    return render_template("blog/posts_by_category.html", user=user, posts=post_with_category, categories=create_cats())
+    return render_template("blog/posts_by_category.html", user=user, posts=post_with_category, categories=create_cats(),
+                           tags=tags)
 
 
 @bp.route('/tag-posts/<tag_id>', methods=['GET', 'POST'])
 def tag(tag_id):
     if request.method == 'GET':
         db = get_db()
-        posts = Post.objects()
+        posts = Post.objects(status=True)
         post_obj = []
 
         for post in posts:
