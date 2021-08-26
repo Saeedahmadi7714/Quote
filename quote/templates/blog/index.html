@@ -20,7 +20,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for each in category['children'] %}
                                     <li><a class="dropdown-item"
-                                           href="{{ url_for( 'api.posts_by_category', category_name = each ) }} ">{{ each }}</a>
+                                           href="{{ url_for( 'blog.category', category_name = each ) }} ">{{ each }}</a>
                                     </li> {% endfor %}
                             </ul>
                         </li>
@@ -32,6 +32,8 @@
                     <input class="search form-control me-2" id="search" type="search" placeholder="Search"
                            aria-label="Search" autocomplete="off">
                 </form>
+
+
 
 
                 {% if user %}
@@ -79,32 +81,29 @@
 {% endblock %} {% block TRENDING %}
 
     <div class="row mb-2 ">
-        <div class="col-md-12 ">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative ">
-                <div class="col p-4 d-flex flex-column position-static ">
-                    <strong class="d-inline-block mb-2 text-dark ">Random Post</strong>
-                    <h3 class="mb-0 ">Coding is a Trap. Get Out.</h3>
-                    <div class="mb-1 text-muted ">Nov 12</div>
-                    <p class="card-text mb-auto ">Chasing skills to remain economically viable is just the beginning of
-                        the trap. Coding tends to pay significantly higher than most jobs, making a move to a project
-                        management position or management position is often lateral in compensation.</p>
-                    <a href="#" class="stretched-link ">Continue reading</a>
-                </div>
-                <div class="col-auto d-none d-lg-block ">
-                    <svg class="bd-placeholder-img " width="200 " height="250 " xmlns="http://www.w3.org/2000/svg "
-                         role="img " aria-label="Placeholder: Thumbnail " preserveAspectRatio="xMidYMid slice "
-                         focusable="false
-                ">
-                        <title>Placeholder</title>
-                        <rect width="100% " height="100% " fill="#55595c "></rect>
-                        <text x="50% " y="50% " fill="#eceeef "
-                              dy=".3em ">Thumbnail
-                        </text>
-                    </svg>
 
+        {#                If we have posts in the database for choose a random post#}
+        {% if rand_post %}
+
+            <div class="col-md-12 ">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative ">
+                    <div class="col p-4 d-flex flex-column position-static ">
+                        <strong class="d-inline-block mb-2 text-dark ">Random Post</strong>
+                        <h3 class="mb-0 ">{{ rand_post.title | title }}</h3>
+                        <div class="mb-1 text-muted ">{{ rand_post.pub_date.strftime("%d/%m/%Y %H:%M") }}</div>
+                        <p class="card-text mb-auto ">{{ rand_post.content[0:300] | safe + "..." }}</p>
+                        <a href="#" class="stretched-link ">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block ">
+
+                        <img src="{{ url_for('static', filename='images/posts_images/' + rand_post.image) }}"
+                             alt="post image" class="bd-placeholder-img">
+
+                    </div>
                 </div>
             </div>
-        </div>
+            {#            Radn post if endif #}
+        {% endif %}
 
     </div>{% endblock %} {% block content %}
     <div class="col-md-8 ">
