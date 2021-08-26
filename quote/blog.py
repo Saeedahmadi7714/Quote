@@ -7,8 +7,6 @@ from .categories import create_cats
 from .Utils import reading_time, random_post
 from textblob import TextBlob
 import os
-import json
-from bson import ObjectId
 
 bp = Blueprint("blog", __name__)
 
@@ -20,10 +18,12 @@ def home():
     user = session
     posts = Post.objects()
     tags = Tag.objects()
+
     # Random post
     r_t = random_post()
     if r_t:
-        return render_template("blog/index.html", categories=create_cats(), user=user, posts=posts, tags=tags, rand_post=r_t)
+        return render_template("blog/index.html", categories=create_cats(), user=user, posts=posts, tags=tags,
+                               rand_post=r_t)
     return render_template("blog/index.html", categories=create_cats(), user=user, posts=posts, tags=tags)
 
 
@@ -56,7 +56,7 @@ def tag(tag_id):
         db = get_db()
         posts = Post.objects()
         post_obj = []
-        
+
         for post in posts:
             for tag in post.tags:
                 if str(tag.id) == (tag_id):
@@ -70,7 +70,7 @@ def tag(tag_id):
                     post["_id"] = str(post["_id"])
                     post_obj.append(post)
 
-        print(post_obj)          
+        print(post_obj)
         return jsonify(post_obj)
 
 
@@ -86,15 +86,15 @@ def register():
         email = request.form.get("email")
         phone_number = request.form.get("phone_number")
         file = request.files.get('profile_image')
-        
+
         if file:
             file_name = secure_filename(file.filename)
             file_ext = os.path.splitext(file_name)[1]
-                
+
             if file_ext not in current_app.config['UPLOAD_EXTENSIONS']:
                 flash('Your image must be one of these types: [.jpg, .png, .gif].', 'error')
                 return redirect(url_for('blog.register'))
-        
+
             file.save('quote/static/images/profile_images/' + file_name)
             image = file_name
 
