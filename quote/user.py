@@ -112,6 +112,7 @@ def create_post():
 @bp.route('/edit-post/<post_id>/', methods=['GET', 'POST'])
 def edit_post(post_id):
     if session:
+        post = Post.objects(id=post_id).first()
         if request.method == 'POST':
             title = request.form.get("title")
             content = request.form.get("erfan")
@@ -143,7 +144,7 @@ def edit_post(post_id):
                     tag_existed = Tag.objects(name=tag).first()
                     all_new_tags.append(tag_existed)
 
-            post = Post.objects(id=post_id).first()
+            
 
             post.content = content
             post.title = title
@@ -152,7 +153,7 @@ def edit_post(post_id):
 
             return redirect(url_for('blog.home'))
 
-        return render_template("user/edit_post.html", categories=create_cats(), post_id=post_id)
+        return render_template("user/edit_post.html", categories=create_cats(), post=post)
 
     else:
         return redirect(url_for('blog.login'))
