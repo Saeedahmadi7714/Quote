@@ -2,6 +2,7 @@ function Add() {
     var x = document.getElementById("myInput").value;
     $("#res").append('<span class = "badge rounded-pill bg-primary">' + x + '</span>');
     $('#new_tag').val($('#new_tag').val() + x + ' ');
+    $('#myInput').val('');
 }
 
 function autocomplete(inp, arr) {

@@ -1,7 +1,7 @@
 {% extends "/blog/base.html" %} {% block title %}Edit{% endblock %} {% block banner %}{% endblock %} {% block css %}
 <link rel="stylesheet" href="{{ url_for('static',filename='css/create_post.css') }}"> {% endblock %} {% block content %}
 
-<form autocomplete="off" method="POST" enctype="multipart/form-data" action="{{ url_for( 'user.edit_post', post_id = post_id ) }}">
+<form autocomplete="off" method="POST" enctype="multipart/form-data" action="{{ url_for( 'user.edit_post', post_id = post.id ) }}">
     <div class="container">
 
         <div class="wrapper">
@@ -15,7 +15,7 @@
                     <label for="title" class="col-form-label" name="label">Title</label>
                 </div>
                 <div class="col-auto">
-                    <input required name="title" type="text" id="title" class="form-control">
+                    <input required name="title" type="text" id="title" value="{{ post.title }}" class="form-control">
                 </div>
                 <div class="col-auto">
                     <span id="passwordHelpInline" class="form-text">
@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <textarea name="erfan" id="the-textarea" maxlength="5000" placeholder="Start Typing..." autofocus required></textarea>
+            <textarea name="erfan" id="the-textarea" maxlength="5000" autofocus required>{{ post.content }}</textarea>
             <div id="the-count">
                 <span id="current">0</span>
                 <span id="maximum">/ 5000</span>
@@ -33,7 +33,7 @@
 
             <form autocomplete="off">
                 <div class="autocomplete" style="width:300px;">
-                    <input required id="myInput" type="text" name="myCountry" placeholder="tag">
+                    <input id="myInput" type="text" name="myCountry" placeholder="tag">
                 </div>
                 <button id="add" type="button" class="btn btn-sm text-light add" onclick="Add()">Add</button>
 
@@ -44,7 +44,7 @@
             </form>
 
             <div class="butts d-grid gap-2 d-md-block">
-                <a href="{{ url_for( 'user.edit_post', post_id = post_id ) }}">
+                <a href="{{ url_for( 'user.edit_post', post_id = post.id ) }}">
                     <button type="submit " class="btn btn-sm text-light">Save</button>
                 </a>
 
