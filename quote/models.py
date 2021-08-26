@@ -13,7 +13,7 @@ class User(Document):
 
 
 class Post(Document):
-    title = StringField(max_length=50, required=True)
+    title = StringField(max_length=250, required=True)
     author = ReferenceField('User', reverse_delete_rule=CASCADE)
     content = StringField(max_length=5000)
     categories = ListField()
