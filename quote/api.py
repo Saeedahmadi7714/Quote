@@ -112,8 +112,3 @@ def like():
 @bp.route('/search/')
 def search():
     pass
-
-
-@bp.route('/user-profile/<user_id>')
-def user_profile(user_id):
-    pass
