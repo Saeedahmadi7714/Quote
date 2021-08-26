@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from flask import Blueprint, session, url_for, redirect, request, jsonify
 from datetime import datetime
 from .models import User, Comment, Post, Tag
