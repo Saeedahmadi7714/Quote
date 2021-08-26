@@ -41,13 +41,16 @@ def post(post_id):
                            reading_time=reading_time(post_details.content), language=language)
 
 
-@bp.route('/category-posts/<category_id>')
-def category(category_id):
+@bp.route('/category-posts/<category_name>/')
+def category(category_name):
     db = get_db()
     user = session
     posts = Post.objects()
-
-    return render_template("blog/category.html", user=user, posts=posts)
+    post_with_category = list()
+    for item in posts:
+        if category_name in item.categories[0].values():
+            post_with_category.append(item)
+    return render_template("blog/posts_by_category.html", user=user, posts=post_with_category, categories=create_cats())
 
 
 @bp.route('/tag-posts/<tag_id>', methods=['GET', 'POST'])
