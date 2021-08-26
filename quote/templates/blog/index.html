@@ -92,7 +92,8 @@
                         <h3 class="mb-0 ">{{ rand_post.title | title }}</h3>
                         <div class="mb-1 text-muted ">{{ rand_post.pub_date.strftime("%d/%m/%Y %H:%M") }}</div>
                         <p class="card-text mb-auto ">{{ rand_post.content[0:300] | safe + "..." }}</p>
-                        <a href="#" class="stretched-link ">Continue reading</a>
+                        <a href="{{ url_for( 'blog.post', post_id=rand_post.id) }}" class="stretched-link ">Continue
+                            reading</a>
                     </div>
                     <div class="col-auto d-none d-lg-block ">
 
