@@ -56,7 +56,18 @@ def category(category_name):
 
 @bp.route('/tag-posts/<tag_name>/')
 def post_by_tags(tag_name):
-    pass
+    db = get_db()
+    user = session
+    posts = Post.objects(status=True)
+    post_obj = []
+    tags = Tag.objects()
+
+    for post in posts:
+            for tag in post.tags:
+                if str(tag.name) == (tag_name):
+                    post_obj.append(post)
+    return render_template("blog/posts_by_tag.html", user=user, posts=post_obj, categories=create_cats(),
+                           tags=tags)
 
 
 @bp.route('/tag-posts/<tag_id>', methods=['GET', 'POST'])
