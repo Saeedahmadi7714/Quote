@@ -54,6 +54,11 @@ def category(category_name):
                            tags=tags)
 
 
+@bp.route('/tag-posts/<tag_name>/')
+def post_by_tags(tag_name):
+    pass
+
+
 @bp.route('/tag-posts/<tag_id>', methods=['GET', 'POST'])
 def tag(tag_id):
     if request.method == 'GET':
