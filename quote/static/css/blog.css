@@ -206,7 +206,9 @@ a:active {
 }
 
 
-/* tags */
+#tags a {
+    color: white;
+}
 
 .tagss:hover {
     cursor: pointer;
