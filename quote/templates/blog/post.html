@@ -65,7 +65,9 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for each in category['children'] %}
-                                    <li><a class="dropdown-item" href="#">{{ each }}</a></li> {% endfor %}
+                                    <li><a class="dropdown-item"
+                                           href="{{ url_for( 'blog.category', category_name = each ) }} ">{{ each }}</a>
+                                    </li> {% endfor %}
                             </ul>
                         </li>
                     {% endif %}{% endfor %}{% endfor %}
