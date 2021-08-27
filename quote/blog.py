@@ -54,7 +54,7 @@ def category(category_name):
                            tags=tags)
 
 
-@bp.route('/tag-posts/<tag_name>/')
+@bp.route('/tags-posts/<tag_name>/')
 def post_by_tags(tag_name):
     db = get_db()
     user = session
@@ -63,9 +63,9 @@ def post_by_tags(tag_name):
     tags = Tag.objects()
 
     for post in posts:
-            for tag in post.tags:
-                if str(tag.name) == (tag_name):
-                    post_obj.append(post)
+        for tag in post.tags:
+            if str(tag.name) == (tag_name):
+                post_obj.append(post)
     return render_template("blog/posts_by_tag.html", user=user, posts=post_obj, categories=create_cats(),
                            tags=tags)
 
