@@ -1,4 +1,4 @@
-// when click on tags
+// When click on tags
 function post_by_tag(id) {
 
     const data = {
@@ -14,7 +14,7 @@ function post_by_tag(id) {
         contentType: false,
         cache: false,
         timeout: 600000,
-        success: function(data) {
+        success: function (data) {
             // clear current posts
             $('#content').html("");
 
@@ -43,12 +43,11 @@ function post_by_tag(id) {
 
             }
         },
-        error: function(e) {
+        error: function (e) {
             console.log("ERROR : ", e);
         }
     });
 };
-
 
 
 // search
@@ -57,7 +56,7 @@ function autocomplete(inp, arr) {
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
     /*execute a function when someone writes in the text field:*/
-    inp.addEventListener("input", function(e) {
+    inp.addEventListener("input", function (e) {
         var a, b, i, val = this.value;
         /*close any already open lists of autocompleted values*/
         closeAllLists();
@@ -83,7 +82,7 @@ function autocomplete(inp, arr) {
                 /*insert a input field that will hold the current array item's value:*/
                 b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
                 /*execute a function when someone clicks on the item value (DIV element):*/
-                b.addEventListener("click", function(e) {
+                b.addEventListener("click", function (e) {
                     /*insert the value for the autocomplete text field:*/
                     inp.value = this.getElementsByTagName("input")[0].value;
 
@@ -101,7 +100,7 @@ function autocomplete(inp, arr) {
                         contentType: false,
                         cache: false,
                         timeout: 600000,
-                        success: function(data) {
+                        success: function (data) {
                             // clear current posts
                             $('#content').html("");
 
@@ -131,7 +130,7 @@ function autocomplete(inp, arr) {
 
                             }
                         },
-                        error: function(e) {
+                        error: function (e) {
                             console.log("ERROR : ", e);
                         }
                     });
@@ -148,7 +147,7 @@ function autocomplete(inp, arr) {
         }
     });
     /*execute a function presses a key on the keyboard:*/
-    inp.addEventListener("keydown", function(e) {
+    inp.addEventListener("keydown", function (e) {
         var x = document.getElementById(this.id + "autocomplete-list");
         if (x) x = x.getElementsByTagName("div");
         if (e.keyCode == 40) {
@@ -203,15 +202,14 @@ function autocomplete(inp, arr) {
     }
 
     /*execute a function when someone clicks in the document:*/
-    document.addEventListener("click", function(e) {
+    document.addEventListener("click", function (e) {
         closeAllLists(e.target);
     });
 }
 
 
-
 /*initiate the autocomplete function on the "search" element, and pass along the title_list array as possible autocomplete values:*/
-$("#search").on("input", function(event) {
+$("#search").on("input", function (event) {
     var title_list = [];
 
     let titles = document.getElementsByName('titles');
