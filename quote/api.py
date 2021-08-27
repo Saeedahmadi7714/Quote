@@ -1,4 +1,4 @@
-from flask import Blueprint, session, url_for, redirect, request, jsonify
+from flask import Blueprint, session, url_for, redirect, request, jsonify, flash
 from datetime import datetime
 from .models import User, Comment, Post, Tag
 from .database import get_db
@@ -40,13 +40,22 @@ def post_delete(post_id):
 def post_deactivate(post_id):
     if request.method == "POST":
         db = get_db()
+        print(post_id)
         post = Post.objects(id=post_id).first()
+        print(post.status)
+        # print(post_id)
         if post.status:
             post.status = False
+            post.save()
+            print(post.status)
+            return 'Deactivated'
         else:
             post.status = True
-        post.save()
-        return ""
+            post.save()
+            print(post.status)
+
+            return "Activated"
+        # return f'OK'
 
 
 @bp.route('/tags/', methods=['GET', 'POST'])
