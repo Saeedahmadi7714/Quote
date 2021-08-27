@@ -18,7 +18,6 @@ def home():
     user = session
     posts = Post.objects(status=True)
     tags = Tag.objects()
-
     # Random post
     r_t = random_post()
     if r_t:
