@@ -22,7 +22,6 @@ function post_by_tag(id) {
             for (let post in data) {
                 var title = data[post].title
                 var title2 = title.charAt(0).toUpperCase() + title.slice(1);
-                // console.log(data[post]._id);
 
                 var content = `<div class="col-md-12 ">
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative ">
