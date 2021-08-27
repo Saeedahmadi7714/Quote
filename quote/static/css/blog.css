@@ -181,7 +181,6 @@ a:active {
     top: 100%;
     left: 78%;
     right: 6%;
-    /* width: 200px; */
 }
 
 .autocomplete-items div {
@@ -204,4 +203,12 @@ a:active {
 .autocomplete-active {
     background-color: DodgerBlue !important;
     color: #ffffff;
+}
+
+
+/* tags */
+
+.tagss:hover {
+    cursor: pointer;
+    color: rgb(138, 138, 138);
 }
