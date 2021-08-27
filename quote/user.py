@@ -61,7 +61,7 @@ def create_post():
             if file:
                 file_name = secure_filename(file.filename)
                 file_ext = os.path.splitext(file_name)[1]
-                
+
                 if file_ext not in current_app.config['UPLOAD_EXTENSIONS']:
                     flash('Your image must be one of these types: [.jpg, .png, .gif].', 'error')
                     return redirect(url_for('user.create_post'))
@@ -95,7 +95,7 @@ def create_post():
                 content=content,
                 categories=[{"children": categories}],
                 status=status,
-                tags=all_new_tags,
+                tags=list(set(all_new_tags)),
                 pub_date=pub_date,
                 image=image
             )
@@ -119,7 +119,7 @@ def edit_post(post_id):
 
             tags = request.form.get("new_tag")
             tags = tags[0:len(tags) - 1].split(" ")
-            
+
             if len(tags) > 6:
                 # flash('You can only choose 6 tags, Please try again.', 'error')
                 return redirect(url_for('user.posts_list'))
@@ -144,11 +144,10 @@ def edit_post(post_id):
                     tag_existed = Tag.objects(name=tag).first()
                     all_new_tags.append(tag_existed)
 
-            
-
             post.content = content
             post.title = title
-            post.tags = all_new_tags
+            # Using set for removing repetitious tags
+            post.tags = list(set(all_new_tags))
             post.save()
 
             return redirect(url_for('blog.home'))
