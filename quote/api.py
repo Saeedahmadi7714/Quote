@@ -6,23 +6,6 @@ from .database import get_db
 bp = Blueprint("api", __name__, url_prefix="/api")
 
 
-@bp.route('/posts_list/')
-def posts_list():
-    pass
-
-
-@bp.route('/category-list/')
-def categories_list():
-    if request.method == 'GET':
-        result = {"Name": 'Saeed'}
-        return jsonify(result)
-
-
-@bp.route('/tags-list/')
-def tags_list():
-    pass
-
-
 @bp.route('/create_comment/', methods=['POST'])
 def create_comment():
     if request.method == 'POST':
@@ -76,7 +59,7 @@ def tags():
             item = item.to_mongo().to_dict()
             del item["_id"]
             obj.append(item)
-        # print(obj)
+
         return jsonify(obj)
 
 
