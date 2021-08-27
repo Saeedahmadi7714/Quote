@@ -31,8 +31,9 @@ def post_delete(post_id):
     if request.method == "POST":
         db = get_db()
         post = Post.objects(id=post_id).first()
+        print(post_id)
         post.delete()
-        return ""
+        return "OK"
 
 
 @bp.route('/post_deactivate/<post_id>/', methods=['POST'])
