@@ -80,16 +80,16 @@ def create_post():
                 db_tag_names.append(item.name)
 
             for tag in tags:
-                if '' not in tag:
-                    if tag not in db_tag_names:
-                        new_tag = Tag(
-                            name=tag
-                        )
-                        new_tag.save()
-                        all_new_tags.append(new_tag)
-                    else:
-                        tag_existed = Tag.objects(name=tag).first()
-                        all_new_tags.append(tag_existed)
+
+                if tag not in db_tag_names:
+                    new_tag = Tag(
+                        name=tag
+                    )
+                    new_tag.save()
+                    all_new_tags.append(new_tag)
+                else:
+                    tag_existed = Tag.objects(name=tag).first()
+                    all_new_tags.append(tag_existed)
 
             new_post = Post(
                 title=title,
@@ -135,18 +135,18 @@ def edit_post(post_id):
 
             for item in db_tag_obj:
                 db_tag_names.append(item.name)
-                
+
             for tag in tags:
-                if '' not in tag:
-                    if tag not in db_tag_names:
-                        new_tag = Tag(
-                            name=tag
-                        )
-                        new_tag.save()
-                        all_new_tags.append(new_tag)
-                    else:
-                        tag_existed = Tag.objects(name=tag).first()
-                        all_new_tags.append(tag_existed)
+
+                if tag not in db_tag_names:
+                    new_tag = Tag(
+                        name=tag
+                    )
+                    new_tag.save()
+                    all_new_tags.append(new_tag)
+                else:
+                    tag_existed = Tag.objects(name=tag).first()
+                    all_new_tags.append(tag_existed)
 
             post.content = content
             post.title = title
