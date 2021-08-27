@@ -1,8 +1,7 @@
 $(document).ready(function () {
-    $('#delete-btn').on('click', function () {
-
-        const postId = $('#postId').html()
-        console.log(postId);
+    $(".delete-btn").unbind().click(function () {
+        const postId = $(this).attr("value")
+        // console.log(postId);
         $.ajax({
             type: 'POST',
             url: '/api/post-delete/' + postId + '/',
@@ -10,11 +9,9 @@ $(document).ready(function () {
             contentType: false,
             cache: false,
             success: function () {
-                const a = $(`#${postId}`).remove()
-
-                alert("Your post successfully deleted.");
-
-
+                $(`#${postId}`).remove()
+                alert("Your post was successfully deleted");
+                // console.log(postId)
             },
             error: function (e) {
                 console.log("ERROR : ", e);
