@@ -40,22 +40,16 @@ def post_delete(post_id):
 def post_deactivate(post_id):
     if request.method == "POST":
         db = get_db()
-        print(post_id)
-        post = Post.objects(id=post_id).first()
-        print(post.status)
-        # print(post_id)
-        if post.status:
-            post.status = False
-            post.save()
-            print(post.status)
+        post_from_ajax = Post.objects(id=post_id).first()
+        print(post_from_ajax)
+        if post_from_ajax.status:
+            post_from_ajax.status = False
+            post_from_ajax.save()
             return 'Deactivated'
         else:
-            post.status = True
-            post.save()
-            print(post.status)
-
-            return "Activated"
-        # return f'OK'
+            post_from_ajax.status = True
+            post_from_ajax.save()
+            return 'Activated'
 
 
 @bp.route('/tags/', methods=['GET', 'POST'])
@@ -104,7 +98,6 @@ def like():
 
 @bp.route('/search/<title>/', methods=['GET', 'POST'])
 def search(title):
-
     if request.method == 'GET':
         db = get_db()
         posts = Post.objects(title=title)
