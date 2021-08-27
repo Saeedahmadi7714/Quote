@@ -1,3 +1,4 @@
+// Delete in dashboard
 $(document).ready(function () {
     $(".delete-btn").unbind().click(function () {
         const postId = $(this).attr("value")
@@ -20,10 +21,12 @@ $(document).ready(function () {
     });
 });
 
+
+// Deactivate in dashboard
 $(document).ready(function () {
     $(".active-btn").unbind().click(function () {
         const postId = $(this).attr("value")
-        // console.log(postId);
+        console.log(postId);
         $.ajax({
             type: 'POST',
             url: '/api/post_deactivate/' + postId + '/',
@@ -31,12 +34,15 @@ $(document).ready(function () {
             contentType: false,
             cache: false,
             success: function (response) {
-                // if (response === 'Activated') {
-                //     alert('Successfully activated.')
-                //
-                // }
+                if (response === 'Deactivated') {
+                    alert('Successfully Deactivated.');
+                } else {
+                    alert('Successfully Activated');
+                }
+
                 // alert("Your post was successfully deleted");
-                console.log(postId)
+                // console.log(postId)
+
             },
             error: function (e) {
                 console.log("ERROR : ", e);
