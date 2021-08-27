@@ -48,19 +48,11 @@ function post_by_tag(id) {
             console.log("ERROR : ", e);
         }
     });
-
 };
 
 
 
 // search
-// function Add() {
-//     var x = document.getElementById("search").value;
-//     $("#res").append('<span class = "badge rounded-pill bg-primary">' + x + '</span>');
-//     $('#new_tag').val($('#new_tag').val() + x + ' ');
-//     $('#search').val('');
-// }
-
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
@@ -95,9 +87,58 @@ function autocomplete(inp, arr) {
                 b.addEventListener("click", function(e) {
                     /*insert the value for the autocomplete text field:*/
                     inp.value = this.getElementsByTagName("input")[0].value;
-                    // Add()
 
-                    // $("#res").append('<span class = "badge rounded-pill bg-primary">' + inp.value + '</span>');
+                    // get post by title from database
+                    const data = {
+                        requestType: 'getPostByTag'
+                    }
+
+                    $.ajax({
+                        type: "GET",
+                        enctype: 'multipart/form-data',
+                        url: "/api/search/" + inp.value,
+                        data: data,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        timeout: 600000,
+                        success: function(data) {
+                            // clear current posts
+                            $('#content').html("");
+
+                            // add posts by tag
+                            for (let post in data) {
+                                var title = data[post].title
+                                var title2 = title.charAt(0).toUpperCase() + title.slice(1);
+                                // console.log(data[post]._id);
+
+                                var content = `<div class="col-md-12 ">
+                                                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative ">
+                                                    <div class="col p-4 d-flex flex-column position-static ">
+                                                        <h3 class="mb-0 ">` + title2 + `</h3>
+                                                        <div class="mb-1 text-muted ">` + data[post].pub_date + `</div>
+                                                        <p class="card-text mb-auto ">` + data[post].content.substring(0, 300) + `</p>
+                                                        <a href="/post/` + data[post]._id + `" class="stretched-link ">Continue
+                                                                    reading</a>
+                                                    </div>
+                                                    <div class="col-auto d-none d-lg-block ">
+                                                        <img src="static/images/posts_images/` + data[post].image + `" alt="post image" class="bd-placeholder-img">
+                                    
+                                                    </div>
+                                                </div>
+                                            </div>`
+
+                                $('#content').append(content);
+
+                            }
+                        },
+                        error: function(e) {
+                            console.log("ERROR : ", e);
+                        }
+                    });
+
+                    $('#search').val('');
+
 
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
@@ -170,47 +211,14 @@ function autocomplete(inp, arr) {
 
 
 
+/*initiate the autocomplete function on the "search" element, and pass along the title_list array as possible autocomplete values:*/
 $("#search").on("input", function(event) {
-    const data = {
-        requestType: 'getTags'
-    }
-
     var title_list = [];
 
     let titles = document.getElementsByName('titles');
     titles.forEach((title) => {
-            title_list.push(title.value);
-
-        })
-        // console.log(title_list);
-
-
+        title_list.push(title.value);
+    })
 
     autocomplete(document.getElementById("search"), title_list);
-
-    // $.ajax({
-    //     type: "GET",
-    //     enctype: 'multipart/form-data',
-    //     url: "/api/tags/",
-    //     data: data,
-    //     processData: false,
-    //     contentType: false,
-    //     cache: false,
-    //     timeout: 600000,
-    //     success: function(data) {
-    //         var title_list = [];
-    //         for (let tag in data) {
-    //             title_list.push(data[tag].name)
-    //         }
-
-
-    //         /*initiate the autocomplete function on the "search" element, and pass along the title_list array as possible autocomplete values:*/
-    //         autocomplete(document.getElementById("search"), tag_list);
-    //         console.log("SUCCESS :", data);
-    //     },
-    //     error: function(e) {
-    //         console.log("ERROR : ", e);
-    //     }
-    // });
-
 });

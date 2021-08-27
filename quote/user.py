@@ -52,6 +52,7 @@ def create_post():
             pub_date = datetime.now()
             tags = request.form.get("new_tag")
             tags = tags[0:len(tags) - 1].split(" ")
+            tags = list(set(tags))
             file = request.files.get('image')
 
             if len(tags) > 6:
@@ -119,6 +120,7 @@ def edit_post(post_id):
 
             tags = request.form.get("new_tag")
             tags = tags[0:len(tags) - 1].split(" ")
+            tags = list(set(tags))
 
             if len(tags) > 6:
                 # flash('You can only choose 6 tags, Please try again.', 'error')

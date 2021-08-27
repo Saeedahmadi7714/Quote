@@ -102,6 +102,24 @@ def like():
             return 'Added'
 
 
-@bp.route('/search/')
-def search():
-    pass
+@bp.route('/search/<title>/', methods=['GET', 'POST'])
+def search(title):
+
+    if request.method == 'GET':
+        db = get_db()
+        posts = Post.objects(title=title)
+        post_obj = []
+
+        for post in posts:
+            if str(post.title) == (title):
+                post = post.to_mongo().to_dict()
+                del post["categories"]
+                del post["likes"]
+                del post["comments"]
+                del post["tags"]
+                del post["author"]
+                post["_id"] = str(post["_id"])
+                post_obj.append(post)
+
+        print(post_obj)
+        return jsonify(post_obj)
