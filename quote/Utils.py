@@ -39,11 +39,11 @@ def random_post():
     db = get_db()
 
     # Count all posts in database
-    posts_count = Post.objects().count()
+    posts_count = Post.objects(status=True).count()
 
     if posts_count:
         # Return a random post from all posts in database
-        r_t = Post.objects(status=True)[[randint(0, posts_count - 1)][0]]
+        r_t = Post.objects()[[randint(0, posts_count - 1)][0]]
         return r_t
 
     # If posts == 0
